@@ -7,11 +7,11 @@ public class Tile {
         Land,
         Water,
         Road,
+        Fire,
         Town
     }
 
     public Types Type { get; }
-    public bool OnFire = false;
 
     public Tile(Types type) {
         Type = type;
