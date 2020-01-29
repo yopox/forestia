@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
             return _instance;
         }
     }
-
+    
     private int _biodiversityPoints;
     private int _popularityPoints;
     private int _criminalityPoints;
