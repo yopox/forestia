@@ -1,3 +1,4 @@
+using Tiles;
 using UnityEngine;
 
 /// <summary>
@@ -27,7 +28,7 @@ public class ForestManager : MonoBehaviour {
     public void CreateForest() {
         for (var i = 0; i < Util.GridHeight; i++) {
             for (var j = 0; j < Util.GridWidth; j++) {
-                _tiles[i, j] = new Tile(Tile.Types.Forest);
+                // _tiles[i, j] = new Tile();
             }
         }
     }
