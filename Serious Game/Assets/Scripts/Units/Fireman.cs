@@ -8,5 +8,7 @@ namespace Units {
         public override string Name => "Fireman";
         public override string Description => "Can extinguish fires.";
         public override int Speed => 1;
+        public override bool Friendly => true;
+        public override bool CPU => false;
     }
 }

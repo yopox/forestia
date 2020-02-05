@@ -8,5 +8,7 @@ namespace Units {
         public override string Name => "Digger";
         public override string Description => "Looks for gold.";
         public override int Speed => 1;
+        public override bool Friendly => false;
+        public override bool CPU => true;
     }
 }

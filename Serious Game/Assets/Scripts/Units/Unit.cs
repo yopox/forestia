@@ -11,7 +11,9 @@ namespace Units {
         public abstract string Name { get; }
         public abstract string Description { get; }
         public abstract int Speed { get; }
-        
+        public abstract bool Friendly { get; }
+        public abstract bool CPU { get; }
+
         /* Gameplay attributes */
         public Vector2Int Position { get; }
         public bool CanMove { get; }
@@ -21,11 +23,10 @@ namespace Units {
         /// </summary>
         public void Select() {
             // TODO: Show information
-            
+
             // TODO: Show movements range
-            
+
             // TODO: Show actions
         }
-
     }
 }

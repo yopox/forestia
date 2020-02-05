@@ -1,5 +1,5 @@
-using Tiles;
 using UnityEngine;
+using Tiles;
 
 /// <summary>
 /// ForestManager contains information about the map.
@@ -31,5 +31,8 @@ public class ForestManager : MonoBehaviour {
                 // _tiles[i, j] = new Tile();
             }
         }
+    }
+
+    public void Update() {
     }
 }

@@ -25,7 +25,23 @@ public class GameManager : MonoBehaviour {
         var dayEvent = EventManager.NewDayEvent();
 
         // Forest update
+        ForestManager.Instance.Update();
 
         // Points calculation
+        
+        // New turn popup
+        
+        // Ally CPU turn
+        UnitManager.Instance.AllyCPUTurn();
+    }
+
+    public void EndTurn() {
+        // Display "Enemy turn"
+        
+        // Enemy turn
+        UnitManager.Instance.EnemyTurn();
+        
+        // Start the next turn
+        NewTurn();
     }
 }
