@@ -6,7 +6,7 @@ namespace Tiles {
         }
 
         public int GetBiodiversityScore() {
-            return _level * 10;
+            return Level * 10;
         }
     }
 }
