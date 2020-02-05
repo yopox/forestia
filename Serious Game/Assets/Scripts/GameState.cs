@@ -1,10 +1,12 @@
+using GameVariables;
+
 public class GameState {
     
-    private int _criminalityPoints;
-    private int _biodiversityPoints;
-    private int _fame;
-    private int _money;
-    private int _sciencePoints;
+    public CriminalityGameVariable CriminalityPoints;
+    public  BiodiversityGameVariable BiodiversityPoints;
+    public  FameGameVariable Fame;
+    public  MoneyGameVariable Money;
+    public ScienceGameVariable SciencePoints;
     
 
 }
