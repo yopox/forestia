@@ -1,14 +1,23 @@
+using System.Linq;
+
 namespace Tiles {
     public abstract class Tile {
-        public int _level { get; }
-        public int _position_x { get; }
-        public int _position_y { get; }
-        public string name { get; }
+        public int Level { get; }
+        public int PositionX { get; }
+        public int PositionY { get; }
+        public string Name { get; }
+        public Action[] Actions { get; }
 
         protected Tile(int positionX, int positionY, string name) {
-            _level = 1;
-            _position_x = positionX;
-            _position_y = positionY;
+            Level = 1;
+            PositionX = positionX;
+            PositionY = positionY;
+            Name = name;
+            Actions = new Action[] {};
+        }
+        
+        protected void AddAction(Action action) {
+            Actions.Append(action);
         }
     }
 }
