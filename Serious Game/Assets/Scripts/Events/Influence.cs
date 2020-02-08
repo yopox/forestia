@@ -12,6 +12,5 @@ namespace Events {
         }
 
         public abstract void Perform(GameState state);
-
     }
 }

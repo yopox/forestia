@@ -1,6 +1,6 @@
 namespace Events {
-    public class NGOEvent : Event {
-        public NGOEvent(string Name, string Description) : base("NGO", "NGO Event") {
+    public class NgoEvent : Event {
+        public NgoEvent(string name, string description) : base("NGO", "NGO Event") {
         }
     }
 }

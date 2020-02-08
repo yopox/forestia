@@ -16,13 +16,21 @@ namespace Events {
             } else {
                 toDisplay = "+ " + value;
             }
+
             return toDisplay + "%";
         }
 
         public override void Perform(GameState state) {
             if (GameVariableType == typeof(BiodiversityGameVariable)) {
                 state.BiodiversityPoints.Value *= (1 + (_value / 100));
-                // TODO other categories
+            } else if (GameVariableType == typeof(CriminalityGameVariable)) {
+                state.CriminalityPoints.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(FameGameVariable)) {
+                state.Fame.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(MoneyGameVariable)) {
+                state.Money.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(ScienceGameVariable)) {
+                state.SciencePoints.Value *= (1 + (_value / 100));
             }
         }
     }
