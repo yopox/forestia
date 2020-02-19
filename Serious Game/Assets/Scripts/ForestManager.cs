@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
-using Tiles;
+using UnityEngine.Tilemaps;
+using Tile = Tiles.Tile;
 
 /// <summary>
 /// ForestManager contains information about the map.
@@ -8,6 +10,7 @@ using Tiles;
 /// TODO: Fire propagation
 public class ForestManager : MonoBehaviour {
     private static ForestManager _instance;
+    public Tilemap forest;
 
     public static ForestManager Instance {
         get {
@@ -26,11 +29,8 @@ public class ForestManager : MonoBehaviour {
     /// Inits the forest.
     /// </summary>
     public void CreateForest() {
-        for (var i = 0; i < Util.GridHeight; i++) {
-            for (var j = 0; j < Util.GridWidth; j++) {
-                // _tiles[i, j] = new Tile();
-            }
-        }
+        Console.Out.Write(forest.size);
+        //forest.ClearAllTiles();
     }
 
     public void Update() {

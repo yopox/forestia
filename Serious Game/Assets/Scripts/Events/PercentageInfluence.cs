@@ -21,16 +21,16 @@ namespace Events {
         }
 
         public override void Perform(GameState state) {
-            if (GameVariableType == typeof(BiodiversityGameVariable)) {
-                state.BiodiversityPoints.Value *= (1 + (_value / 100));
-            } else if (GameVariableType == typeof(CriminalityGameVariable)) {
-                state.CriminalityPoints.Value *= (1 + (_value / 100));
-            } else if (GameVariableType == typeof(FameGameVariable)) {
-                state.Fame.Value *= (1 + (_value / 100));
-            } else if (GameVariableType == typeof(MoneyGameVariable)) {
-                state.Money.Value *= (1 + (_value / 100));
-            } else if (GameVariableType == typeof(ScienceGameVariable)) {
-                state.SciencePoints.Value *= (1 + (_value / 100));
+            if (GameVariableType == typeof(Biodiversity)) {
+                state.biodiversity.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(Criminality)) {
+                state.criminality.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(Fame)) {
+                state.fame.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(Money)) {
+                state.money.Value *= (1 + (_value / 100));
+            } else if (GameVariableType == typeof(Science)) {
+                state.science.Value *= (1 + (_value / 100));
             }
         }
     }
