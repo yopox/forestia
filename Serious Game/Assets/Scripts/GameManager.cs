@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -17,10 +18,15 @@ public class GameManager : MonoBehaviour {
     private int _popularityPoints;
     private int _criminalityPoints;
 
+    
+    
     /// <summary>
     /// Called at the beginning of a turn.
     /// </summary>
     public void NewTurn() {
+        GameState.Instance.round += 1;
+        GameState.Instance.UpdateTexts();
+        
         // Random events
         var dayEvent = EventManager.NewDayEvent();
 
@@ -43,5 +49,11 @@ public class GameManager : MonoBehaviour {
         
         // Start the next turn
         NewTurn();
+    }
+
+    private void Awake() {
+        ForestManager.Instance.CreateForest();
+        NewTurn();
+        //ForestManager.Instance.forest.ClearAllTiles();
     }
 }

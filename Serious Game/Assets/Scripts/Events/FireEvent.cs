@@ -4,7 +4,7 @@ using Tiles;
 namespace Events {
     public class FireEvent : Event {
         public FireEvent(Tile tile) : base("Fire", BuildDescription(tile)) {
-            Influence influence = new AbsoluteInfluence(typeof(FameGameVariable),-5);
+            Influence influence = new AbsoluteInfluence(typeof(Fame),-5);
             AddInfluence(influence);
         }
 
