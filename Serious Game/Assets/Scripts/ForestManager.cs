@@ -44,6 +44,10 @@ public class ForestManager : MonoBehaviour {
         _tiles = new AbstractTile[Util.GridHeight, Util.GridWidth];
     }
 
+    public AbstractTile GetTile(Vector2Int position) {
+        return _tiles[position.y, position.x];
+    }
+
     /// <summary>
     /// Inits the forest.
     /// </summary>
@@ -96,31 +100,60 @@ public class ForestManager : MonoBehaviour {
             for (var x = 0; x < forest.size.x; x++) {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
-                switch (_tiles[y, x]) {
-                    case ForestTile fT:
+                var tile = GetTile(new Vector2Int(x, y));
+                switch (tile.GetType().FullName) {
+                    case "ForestTile":
+                        var fT = (ForestTile) tile;
                         if (fT.InFire && displayed != FIRE_TILE) forest.SetTile(position, fireTile);
                         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE) forest.SetTile(position, fieldTile);
                         else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE) forest.SetTile(position, forestTile);
                         break;
-                    case RiverTile _:
+                    case "RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
                         break;
-                    case BarrackTile _:
+                    case "BarrackTile":
                         if (displayed != BARRACK_TILE) forest.SetTile(position, barrackTile);
                         break;
-                    case FarmTile _:
+                    case "FarmTile":
                         if (displayed != FARM_TILE) forest.SetTile(position, farmTile);
                         break;
-                    case FarmFieldTile _:
+                    case "FarmFieldTile":
                         if (displayed != FARM_FIELD_TILE) forest.SetTile(position, farmFieldTile);
                         break;
-                    case FireStationTile _:
+                    case "FireStationTile":
                         if (displayed != FIRE_STATION_TILE) forest.SetTile(position, fireStationTile);
                         break;
-                    case LaboratoryTile _:
+                    case "LaboratoryTile":
                         if (displayed != LAB_TILE) forest.SetTile(position, labTile);
                         break; 
                 }
+                
+                
+                // switch (_tiles[y, x]) {
+                //     case ForestTile fT:
+                //         if (fT.InFire && displayed != FIRE_TILE) forest.SetTile(position, fireTile);
+                //         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE) forest.SetTile(position, fieldTile);
+                //         else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE) forest.SetTile(position, forestTile);
+                //         break;
+                //     case RiverTile _:
+                //         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
+                //         break;
+                //     case BarrackTile _:
+                //         if (displayed != BARRACK_TILE) forest.SetTile(position, barrackTile);
+                //         break;
+                //     case FarmTile _:
+                //         if (displayed != FARM_TILE) forest.SetTile(position, farmTile);
+                //         break;
+                //     case FarmFieldTile _:
+                //         if (displayed != FARM_FIELD_TILE) forest.SetTile(position, farmFieldTile);
+                //         break;
+                //     case FireStationTile _:
+                //         if (displayed != FIRE_STATION_TILE) forest.SetTile(position, fireStationTile);
+                //         break;
+                //     case LaboratoryTile _:
+                //         if (displayed != LAB_TILE) forest.SetTile(position, labTile);
+                //         break; 
+                // }
             }
         }
     }
