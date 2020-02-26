@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Tiles {
-    public abstract class BiodiversityTile : Tile {
+    public abstract class BiodiversityTile : AbstractTile {
         // TODO bonus species
 
         protected BiodiversityTile(Vector2Int position, string name) : base(position, name) {

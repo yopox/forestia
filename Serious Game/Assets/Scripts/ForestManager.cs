@@ -1,7 +1,7 @@
 using System;
+using Tiles;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Tile = Tiles.Tile;
 
 /// <summary>
 /// ForestManager contains information about the map.
@@ -11,6 +11,9 @@ using Tile = Tiles.Tile;
 public class ForestManager : MonoBehaviour {
     private static ForestManager _instance;
     public Tilemap forest;
+    public TileBase forestTile;
+    public TileBase fieldTile;
+    public TileBase fireTile;
 
     public static ForestManager Instance {
         get {
@@ -19,10 +22,10 @@ public class ForestManager : MonoBehaviour {
         }
     }
 
-    private Tile[,] _tiles;
+    private AbstractTile[,] _tiles;
 
     public ForestManager() {
-        _tiles = new Tile[Util.GridHeight, Util.GridWidth];
+        _tiles = new AbstractTile[Util.GridHeight, Util.GridWidth];
     }
 
     /// <summary>
@@ -31,6 +34,9 @@ public class ForestManager : MonoBehaviour {
     public void CreateForest() {
         Console.Out.Write(forest.size);
         //forest.ClearAllTiles();
+        //Debug.Log(fire_tile.ge);
+        var tile = forest.GetTile(forest.origin);
+        forest.SetTile(forest.origin + new Vector3Int(2, 1, 0), fireTile);
     }
 
     public void Update() {

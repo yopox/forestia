@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace Tiles {
-    public abstract class FarmTile : BuildingTile {
-        private const string FarmTileName = "Barrack";
+    public class FarmTile : BuildingTile {
+        private const string FarmTileName = "Farm";
 
         protected FarmTile(Vector2Int position) : base(position, FarmTileName) {
         }

@@ -2,15 +2,20 @@ using Units;
 using UnityEngine;
 
 namespace Tiles {
-    public abstract class LaboratoryTile : BuildingTile {
+    public class LaboratoryTile : BuildingTile {
         private const string LaboratoryTileName = "Laboratory";
 
         protected LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
-            AddAction(new Action("new researcher", NewResearcher));
+            AddAction(new TileAction("new researcher", NewResearcher, IsNewResearcherActive));
         }
 
         public void NewResearcher() {
             UnitManager.Instance.SpawnUnit(new Researcher(Position));
+        }
+
+        public bool IsNewResearcherActive() {
+            // TODO
+            return true;
         }
     }
 }
