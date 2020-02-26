@@ -1,13 +1,21 @@
+using Units;
+using UnityEngine;
+
 namespace Tiles {
-    public abstract class BarrackAbstractTile : BuildingAbstractTile {
+    public class BarrackTile : BuildingTile {
         private const string BarrackTileName = "Barrack";
 
-        protected BarrackAbstractTile(int positionX, int positionY) : base(positionX, positionY, BarrackTileName) {
-            AddAction(new Action("new unit", NewUnit));
+        protected BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
+            AddAction(new TileAction("new military", NewMilitary, IsNewMilitaryActive));
         }
 
-        public void NewUnit() {
+        public void NewMilitary() {
+            UnitManager.Instance.SpawnUnit(new Military(Position));
+        }
+
+        public bool IsNewMilitaryActive() {
             // TODO
+            return true;
         }
     }
 }

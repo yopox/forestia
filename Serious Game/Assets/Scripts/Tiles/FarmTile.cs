@@ -1,8 +1,10 @@
-namespace Tiles {
-    public abstract class FarmAbstractTile : BuildingAbstractTile {
-        private const string FarmTileName = "Barrack";
+using UnityEngine;
 
-        protected FarmAbstractTile(int positionX, int positionY) : base(positionX, positionY, FarmTileName) {
+namespace Tiles {
+    public class FarmTile : BuildingTile {
+        private const string FarmTileName = "Farm";
+
+        protected FarmTile(Vector2Int position) : base(position, FarmTileName) {
         }
     }
 }

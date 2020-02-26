@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Tiles {
-    public class FarmFieldAbstractTile : BuildingAbstractTile {
+    public class FarmFieldTile : BuildingTile {
         private const string FarmTileName = "Field";
 
-        public FarmFieldAbstractTile(int positionX, int positionY) : base(positionX, positionY, FarmTileName) {
+        public FarmFieldTile(Vector2Int position) : base(position, FarmTileName) {
         }
     }
 }

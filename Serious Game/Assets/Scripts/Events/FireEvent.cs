@@ -7,10 +7,9 @@ namespace Events {
             Influence influence = new AbsoluteInfluence(typeof(Fame),-5);
             AddInfluence(influence);
         }
-
-        private static string BuildDescription(AbstractTile abstractTile) {
-            return "Oh no ! A fire broke out on tile [" + abstractTile.PositionX + ", " + abstractTile.PositionY + "]";
-            
+        
+        private static string BuildDescription(AbstractTile tile) {
+            return "Oh no ! A fire broke out on tile [" + tile.Position.x + ", " + tile.Position.y + "]";
         }
     }
 }

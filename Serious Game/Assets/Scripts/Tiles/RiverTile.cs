@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Tiles {
-    public class RiverAbstractTile : BiodiversityAbstractTile {
+    public class RiverTile : BiodiversityTile {
         private const string RiverTileName = "River";
 
-        public RiverAbstractTile(int positionX, int positionY) : base(positionX, positionY, RiverTileName) {
+        public RiverTile(Vector2Int position) : base(position, RiverTileName) {
         }
     }
 }

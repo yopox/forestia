@@ -1,23 +1,22 @@
 using System.Linq;
+using UnityEngine;
 
 namespace Tiles {
     public abstract class AbstractTile {
         public int Level { get; }
-        public int PositionX { get; }
-        public int PositionY { get; }
+        public Vector2Int Position { get; }
         public string Name { get; }
-        public Action[] Actions { get; }
+        public TileAction[] Actions { get; }
 
-        protected AbstractTile(int positionX, int positionY, string name) {
+        protected AbstractTile(Vector2Int position, string name) {
             Level = 1;
-            PositionX = positionX;
-            PositionY = positionY;
+            Position = position;
             Name = name;
-            Actions = new Action[] {};
+            Actions = new TileAction[] { };
         }
-        
-        protected void AddAction(Action action) {
-            Actions.Append(action);
+
+        protected void AddAction(TileAction tileAction) {
+            Actions.Append(tileAction);
         }
     }
 }

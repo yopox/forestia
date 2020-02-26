@@ -1,6 +1,8 @@
+using UnityEngine;
+
 namespace Tiles {
-    public abstract class BuildingAbstractTile : AbstractTile {
-        protected BuildingAbstractTile(int positionX, int positionY, string name) : base(positionX, positionY, name) {
+    public abstract class BuildingTile : AbstractTile {
+        protected BuildingTile(Vector2Int position, string name) : base(position, name) {
         }
     }
 }
