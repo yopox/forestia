@@ -140,6 +140,7 @@ public class ForestManager : MonoBehaviour {
 
             if (forest.HasTile(gridPos + forest.origin)) {
                 // TODO: Update bottom GUI with tile _tiles[gridPos.y, gridPos.x]
+                InteractorManager.Instance.UpdateType(_tiles[gridPos.y,gridPos.x]);
                 Debug.Log("Hello World from " + gridPos);
             }
         }
