@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Units {
     public class Researcher : Unit {
         public Researcher(Vector2Int position) : base(position) {
-            AddAction(new UnitAction("search", Search));
+            AddAction(new UnitAction("search", Search, IsSearchActive));
         }
 
         public override string Name => "Researcher";
@@ -14,6 +14,11 @@ namespace Units {
 
         public void Search() {
             // TODO
+        }
+
+        public bool IsSearchActive() {
+            // TODO
+            return true;
         }
     }
 }
