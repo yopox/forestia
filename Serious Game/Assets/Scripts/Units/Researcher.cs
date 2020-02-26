@@ -1,3 +1,4 @@
+using Tiles;
 using UnityEngine;
 
 namespace Units {
@@ -17,8 +18,8 @@ namespace Units {
         }
 
         public bool IsSearchActive() {
-            // TODO
-            return true;
+            var tile = ForestManager.Instance.GetTile(Position);
+            return tile is ForestTile;
         }
     }
 }
