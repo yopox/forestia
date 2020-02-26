@@ -52,7 +52,7 @@ public class ForestManager : MonoBehaviour {
     /// Inits the forest.
     /// </summary>
     public void CreateForest() {
-        Console.Out.Write("Init forest of size " + forest.size);
+        Debug.Log("Init forest of size " + forest.size);
 
         var size = forest.size;
         _tiles = new AbstractTile[size.y, size.x];
@@ -105,8 +105,10 @@ public class ForestManager : MonoBehaviour {
                     case "ForestTile":
                         var fT = (ForestTile) tile;
                         if (fT.InFire && displayed != FIRE_TILE) forest.SetTile(position, fireTile);
-                        else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE) forest.SetTile(position, fieldTile);
-                        else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE) forest.SetTile(position, forestTile);
+                        else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE)
+                            forest.SetTile(position, fieldTile);
+                        else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE)
+                            forest.SetTile(position, forestTile);
                         break;
                     case "RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
@@ -125,39 +127,21 @@ public class ForestManager : MonoBehaviour {
                         break;
                     case "LaboratoryTile":
                         if (displayed != LAB_TILE) forest.SetTile(position, labTile);
-                        break; 
+                        break;
                 }
-                
-                
-                // switch (_tiles[y, x]) {
-                //     case ForestTile fT:
-                //         if (fT.InFire && displayed != FIRE_TILE) forest.SetTile(position, fireTile);
-                //         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE) forest.SetTile(position, fieldTile);
-                //         else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE) forest.SetTile(position, forestTile);
-                //         break;
-                //     case RiverTile _:
-                //         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
-                //         break;
-                //     case BarrackTile _:
-                //         if (displayed != BARRACK_TILE) forest.SetTile(position, barrackTile);
-                //         break;
-                //     case FarmTile _:
-                //         if (displayed != FARM_TILE) forest.SetTile(position, farmTile);
-                //         break;
-                //     case FarmFieldTile _:
-                //         if (displayed != FARM_FIELD_TILE) forest.SetTile(position, farmFieldTile);
-                //         break;
-                //     case FireStationTile _:
-                //         if (displayed != FIRE_STATION_TILE) forest.SetTile(position, fireStationTile);
-                //         break;
-                //     case LaboratoryTile _:
-                //         if (displayed != LAB_TILE) forest.SetTile(position, labTile);
-                //         break; 
-                // }
             }
         }
     }
 
     public void Update() {
+        if (Input.GetMouseButtonDown(0)) {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
+
+            if (forest.HasTile(gridPos + forest.origin)) {
+                // TODO: Update bottom GUI with tile _tiles[gridPos.y, gridPos.x]
+                Debug.Log("Hello World from " + gridPos);
+            }
+        }
     }
 }

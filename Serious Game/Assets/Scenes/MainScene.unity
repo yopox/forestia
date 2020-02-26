@@ -3392,15 +3392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forest: {fileID: 498606772}
-  forestTile: {fileID: 11400000, guid: f394ee4dfdd7f4a18a22d651db78beb0, type: 2}
-  fieldTile: {fileID: 11400000, guid: 1affaebf9769c47b5a669c1bb4b2c0f6, type: 2}
-  fireTile: {fileID: 11400000, guid: 8c078645b73284f1cab6c0813da71bc2, type: 2}
-  riverTile: {fileID: 0}
-  barrackTile: {fileID: 0}
-  farmTile: {fileID: 0}
---- !u!4 &1074326963
-Transform:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -3428,7 +3419,7 @@ Transform:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1209684488}
+  m_TargetGraphic: {fileID: 876517120}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -3580,6 +3571,12 @@ MonoBehaviour:
   forestTile: {fileID: 0}
   fieldTile: {fileID: 0}
   fireTile: {fileID: 0}
+  riverTile: {fileID: 0}
+  barrackTile: {fileID: 0}
+  farmTile: {fileID: 0}
+  farmFieldTile: {fileID: 0}
+  fireStationTile: {fileID: 0}
+  labTile: {fileID: 0}
 --- !u!4 &1074326963
 Transform:
   m_ObjectHideFlags: 0
@@ -4687,11 +4684,11 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1934616955
