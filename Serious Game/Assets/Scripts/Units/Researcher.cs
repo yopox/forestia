@@ -3,6 +3,7 @@ using UnityEngine;
 namespace Units {
     public class Researcher : Unit {
         public Researcher(Vector2Int position) : base(position) {
+            AddAction(new UnitAction("search", Search));
         }
 
         public override string Name => "Researcher";
@@ -10,5 +11,9 @@ namespace Units {
         public override int Speed => 3;
         public override bool Friendly => true;
         public override bool CPU => false;
+
+        public void Search() {
+            // TODO
+        }
     }
 }
