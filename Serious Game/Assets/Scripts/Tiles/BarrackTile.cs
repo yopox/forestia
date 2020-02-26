@@ -14,8 +14,8 @@ namespace Tiles {
         }
 
         public bool IsNewMilitaryActive() {
-            // TODO
-            return true;
+            var unitOrNull = UnitManager.Instance.GetUnit(Position);
+            return unitOrNull == null;
         }
     }
 }
