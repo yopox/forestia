@@ -14,8 +14,8 @@ namespace Tiles {
         }
 
         public bool IsNewFirefighterActive() {
-            // TODO
-            return true;
+            var unitOrNull = UnitManager.Instance.GetUnit(Position);
+            return unitOrNull == null;
         }
     }
 }

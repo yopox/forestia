@@ -37,4 +37,18 @@ public class UnitManager : MonoBehaviour {
             // CPU-controlled unit turn
         }
     }
+
+    /// <summary>
+    /// return the unit at the given position or null if none present
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public Unit GetUnit(Vector2Int position) {
+        foreach (var unit in units) {
+            if (unit.Position == position) { // is that correct ? if not, use unit.Position.x == position.x && ...
+                return unit;
+            }
+        }
+        return null;
+    }
 }
