@@ -9,8 +9,7 @@ namespace Events {
         }
 
         private static string BuildDescription(Tile tile) {
-            return "Oh no ! A fire broke out on tile [" + tile.PositionX + ", " + tile.PositionY + "]";
-            
+            return "Oh no ! A fire broke out on tile [" + tile.Position.x + ", " + tile.Position.y + "]";
         }
     }
 }

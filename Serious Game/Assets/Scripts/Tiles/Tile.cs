@@ -1,17 +1,16 @@
 using System.Linq;
+using UnityEngine;
 
 namespace Tiles {
     public abstract class Tile {
         public int Level { get; }
-        public int PositionX { get; }
-        public int PositionY { get; }
+        public Vector2Int Position { get; }
         public string Name { get; }
         public Action[] Actions { get; }
 
-        protected Tile(int positionX, int positionY, string name) {
+        protected Tile(Vector2Int position, string name) {
             Level = 1;
-            PositionX = positionX;
-            PositionY = positionY;
+            Position = position;
             Name = name;
             Actions = new Action[] {};
         }

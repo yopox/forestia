@@ -1,9 +1,11 @@
+using UnityEngine;
+
 namespace Tiles {
     public class ForestTile : BiodiversityTile {
         private const string ForestTileName = "Forest";
         private bool _inFire;
 
-        public ForestTile(int positionX, int positionY) : base(positionX, positionY, ForestTileName) {
+        public ForestTile(Vector2Int position) : base(position, ForestTileName) {
             _inFire = false;
         }
 

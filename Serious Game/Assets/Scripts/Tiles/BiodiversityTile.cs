@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Tiles {
     public abstract class BiodiversityTile : Tile {
         // TODO bonus species
 
-        protected BiodiversityTile(int positionX, int positionY, string name) : base(positionX, positionY, name) {
+        protected BiodiversityTile(Vector2Int position, string name) : base(position, name) {
         }
 
         public int GetBiodiversityScore() {
