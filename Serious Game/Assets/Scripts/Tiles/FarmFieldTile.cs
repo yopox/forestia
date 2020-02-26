@@ -1,8 +1,8 @@
 namespace Tiles {
-    public class FarmFieldTile : BuildingTile {
+    public class FarmFieldAbstractTile : BuildingAbstractTile {
         private const string FarmTileName = "Field";
 
-        public FarmFieldTile(int positionX, int positionY) : base(positionX, positionY, FarmTileName) {
+        public FarmFieldAbstractTile(int positionX, int positionY) : base(positionX, positionY, FarmTileName) {
         }
     }
 }

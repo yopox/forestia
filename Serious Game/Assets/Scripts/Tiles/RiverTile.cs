@@ -1,8 +1,8 @@
 namespace Tiles {
-    public class RiverTile : BiodiversityTile {
+    public class RiverAbstractTile : BiodiversityAbstractTile {
         private const string RiverTileName = "River";
 
-        public RiverTile(int positionX, int positionY) : base(positionX, positionY, RiverTileName) {
+        public RiverAbstractTile(int positionX, int positionY) : base(positionX, positionY, RiverTileName) {
         }
     }
 }

@@ -1,9 +1,9 @@
 namespace Tiles {
-    public class ForestTile : BiodiversityTile {
+    public class ForestAbstractTile : BiodiversityAbstractTile {
         private const string ForestTileName = "Forest";
         private bool _inFire;
 
-        public ForestTile(int positionX, int positionY) : base(positionX, positionY, ForestTileName) {
+        public ForestAbstractTile(int positionX, int positionY) : base(positionX, positionY, ForestTileName) {
             _inFire = false;
         }
 

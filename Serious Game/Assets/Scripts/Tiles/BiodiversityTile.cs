@@ -1,8 +1,8 @@
 namespace Tiles {
-    public abstract class BiodiversityTile : Tile {
+    public abstract class BiodiversityAbstractTile : AbstractTile {
         // TODO bonus species
 
-        protected BiodiversityTile(int positionX, int positionY, string name) : base(positionX, positionY, name) {
+        protected BiodiversityAbstractTile(int positionX, int positionY, string name) : base(positionX, positionY, name) {
         }
 
         public int GetBiodiversityScore() {

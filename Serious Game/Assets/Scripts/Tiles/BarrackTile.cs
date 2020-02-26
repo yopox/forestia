@@ -1,8 +1,8 @@
 namespace Tiles {
-    public abstract class BarrackTile : BuildingTile {
+    public abstract class BarrackAbstractTile : BuildingAbstractTile {
         private const string BarrackTileName = "Barrack";
 
-        protected BarrackTile(int positionX, int positionY) : base(positionX, positionY, BarrackTileName) {
+        protected BarrackAbstractTile(int positionX, int positionY) : base(positionX, positionY, BarrackTileName) {
             AddAction(new Action("new unit", NewUnit));
         }
 
