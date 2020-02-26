@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         ForestManager.Instance.CreateForest();
+        ForestManager.Instance.UpdateTileMap();
         NewTurn();
         //ForestManager.Instance.forest.ClearAllTiles();
     }

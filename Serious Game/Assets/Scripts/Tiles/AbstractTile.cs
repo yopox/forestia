@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tiles {
     public abstract class AbstractTile {
-        public int Level { get; }
+        public int Level { get; set; }
         public Vector2Int Position { get; }
         public string Name { get; }
         public TileAction[] Actions { get; }

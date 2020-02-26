@@ -5,7 +5,7 @@ namespace Tiles {
     public class LaboratoryTile : BuildingTile {
         private const string LaboratoryTileName = "Laboratory";
 
-        protected LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
+        public LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
             AddAction(new TileAction("new researcher", NewResearcher, IsNewResearcherActive));
         }
 

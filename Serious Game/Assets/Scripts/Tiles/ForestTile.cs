@@ -5,6 +5,8 @@ namespace Tiles {
         private const string ForestTileName = "Forest";
         private bool _inFire;
 
+        public bool InFire => _inFire;
+
         public ForestTile(Vector2Int position) : base(position, ForestTileName) {
             _inFire = false;
         }
