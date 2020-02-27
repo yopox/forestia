@@ -23,16 +23,54 @@ public class InteractorManager : MonoBehaviour {
         }
     }
 
+    public void UpdateInteractor(AbstractTile tile) {
+        type.text = tile.Name.ToUpper();
+        string newDescription;
+        switch (tile.GetType().FullName) {
+            case "Tiles.ForestTile":
+                var fT = (ForestTile) tile;
+                newDescription = "This is a Forest Tile";
+                if (fT.InFire) {
+                    newDescription += "\nThis tile is on fire !";
+                };
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.RiverTile":
+                newDescription = "This is a River Tile";
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.BarrackTile":
+                newDescription = "This is a Barracks Tile";
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.FarmTile":
+                newDescription = "This is a Farm Tile";
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.FarmFieldTile":
+                newDescription = "This is a Farm Field Tile";
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.FireStationTile":
+                newDescription = "This is a Fire Station Tile";
+                UpdateDescription(newDescription);
+                break;
+            case "Tiles.LaboratoryTile":
+                newDescription = "This is a Lab Tile";
+                UpdateDescription(newDescription);
+                break;
+        }
+    }
+
     private void UpdateDescription(string newDescription) {
         description.text = newDescription;
     }
 
-    public void UpdateActions() {
+    private void UpdateActions() {
         return;
     }
 
-    public void UpdateType(AbstractTile tile) {
-        //tile.GetType();
-        type.text = tile.Name.ToUpper();
+    private void UpdateType(AbstractTile tile) {
+        
     }
 }

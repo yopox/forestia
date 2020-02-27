@@ -20,7 +20,8 @@ public class ForestManager : MonoBehaviour {
     public TileBase farmFieldTile;
     public TileBase fireStationTile;
     public TileBase labTile;
-
+    public GameObject cursor;
+    
     private const string FOREST_TILE = "tile_forest";
     private const string FIELD_TILE = "tile_field";
     private const string FIRE_TILE = "tile_fire";
@@ -93,6 +94,7 @@ public class ForestManager : MonoBehaviour {
                 }
             }
         }
+        InteractorManager.Instance.UpdateInteractor(_tiles[0,0]);
     }
 
     public void UpdateTileMap() {
@@ -135,13 +137,18 @@ public class ForestManager : MonoBehaviour {
 
     public void Update() {
         if (Input.GetMouseButtonDown(0)) {
+            // ReSharper disable once PossibleNullReferenceException
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
 
             if (forest.HasTile(gridPos + forest.origin)) {
+                Vector3 newPositionOfCursor = forest.CellToWorld(gridPos 
+                                                                 + forest.origin) + 
+                                              new Vector3((float) 16,(float) 16, 0);
+                cursor.transform.position = newPositionOfCursor;
+                
                 // TODO: Update bottom GUI with tile _tiles[gridPos.y, gridPos.x]
-                InteractorManager.Instance.UpdateType(_tiles[gridPos.y,gridPos.x]);
-                Debug.Log("Hello World from " + gridPos);
+                InteractorManager.Instance.UpdateInteractor(_tiles[gridPos.y,gridPos.x]);
             }
         }
     }

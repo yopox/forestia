@@ -145,11 +145,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23870634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16, y: 34, z: -1}
-  m_LocalScale: {x: 32, y: 32, z: 1}
+  m_LocalPosition: {x: -11.5, y: -6.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1758681353}
-  m_RootOrder: 1
+  m_Father: {fileID: 498606770}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &23870636
 SpriteRenderer:
@@ -722,7 +722,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 32, y: 32, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 23870635}
   m_Father: {fileID: 1758681353}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3655,6 +3656,7 @@ MonoBehaviour:
   farmFieldTile: {fileID: 0}
   fireStationTile: {fileID: 0}
   labTile: {fileID: 0}
+  cursor: {fileID: 23870634}
 --- !u!4 &1074326963
 Transform:
   m_ObjectHideFlags: 0
@@ -4565,7 +4567,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498606770}
-  - {fileID: 23870635}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
