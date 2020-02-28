@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Units {
         public abstract int Speed { get; }
         public abstract bool Friendly { get; }
         public abstract bool CPU { get; }
-        public UnitAction[] Actions { get; }
+        public IEnumerable<UnitAction> Actions { get; private set; }
 
         /* Gameplay attributes */
         public Vector2Int Position { get; }
@@ -32,7 +33,8 @@ namespace Units {
         }
         
         protected void AddAction(UnitAction unitAction) {
-            Actions.Append(unitAction);
+            Debug.Log(unitAction.label);
+            Actions = Actions.Append<UnitAction>(unitAction);
         }
     }
 }
