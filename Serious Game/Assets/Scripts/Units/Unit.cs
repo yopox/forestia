@@ -7,6 +7,7 @@ namespace Units {
         protected Unit(Vector2Int position) {
             Position = position;
             CanMove = true;
+            Actions = new List<UnitAction>();
         }
 
         /* General attributes */
