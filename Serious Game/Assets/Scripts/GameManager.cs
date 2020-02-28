@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// GameManager handles time, events, and the state of the game.

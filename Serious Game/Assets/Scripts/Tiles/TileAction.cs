@@ -1,16 +1,17 @@
 namespace Tiles {
     public delegate void ActionMethod();
+
     public delegate bool IsActionActive();
 
     public class TileAction {
-        public string label { get; }
-        public ActionMethod method { get; }
-        public IsActionActive isActionActive { get; }
+        public string Label { get; }
+        public ActionMethod Method { get; }
+        public IsActionActive IsActionActive { get; }
 
         public TileAction(string label, ActionMethod method, IsActionActive isActionActive) {
-            this.label = label;
-            this.method = method;
-            this.isActionActive = isActionActive;
+            this.Label = label;
+            this.Method = method;
+            this.IsActionActive = isActionActive;
         }
     }
 }

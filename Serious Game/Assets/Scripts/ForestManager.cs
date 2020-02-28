@@ -94,7 +94,6 @@ public class ForestManager : MonoBehaviour {
                 }
             }
         }
-        InteractorManager.Instance.UpdateInteractor(_tiles[0,0]);
     }
 
     public void UpdateTileMap() {
@@ -133,6 +132,8 @@ public class ForestManager : MonoBehaviour {
                 }
             }
         }
+        // Cursor is set on origin tile, so updating the interactor accordingly
+        InteractorManager.Instance.UpdateInteractor(_tiles[0,0]);
     }
 
     public void Update() {
@@ -142,14 +143,16 @@ public class ForestManager : MonoBehaviour {
             Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
 
             if (forest.HasTile(gridPos + forest.origin)) {
+                // Move the cursor to the selected tile
                 Vector3 newPositionOfCursor = forest.CellToWorld(gridPos 
                                                                  + forest.origin) + 
                                               new Vector3((float) 16,(float) 16, 0);
                 cursor.transform.position = newPositionOfCursor;
                 
-                // TODO: Update bottom GUI with tile _tiles[gridPos.y, gridPos.x]
+                // Update the GUI with the selected tile
                 InteractorManager.Instance.UpdateInteractor(_tiles[gridPos.y,gridPos.x]);
             }
+            // TODO: check if unit is on tile, and select unit first
         }
     }
 }

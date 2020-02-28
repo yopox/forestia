@@ -7,6 +7,7 @@ namespace Tiles {
 
         public BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
             AddAction(new TileAction("new military", NewMilitary, IsNewMilitaryActive));
+            Debug.Log(this.Actions);
         }
 
         public void NewMilitary() {
