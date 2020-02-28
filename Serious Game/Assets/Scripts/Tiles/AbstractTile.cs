@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Tiles {
         public int Level { get; set; }
         public Vector2Int Position { get; }
         public string Name { get; }
-        public TileAction[] Actions { get; }
+        public IEnumerable<TileAction> Actions { get; private set; }
 
         protected AbstractTile(Vector2Int position, string name) {
             Level = 1;
@@ -16,7 +17,7 @@ namespace Tiles {
         }
 
         protected void AddAction(TileAction tileAction) {
-            Actions.Append(tileAction);
+            Actions = Actions.Append(tileAction);
         }
-    }
+    }    
 }

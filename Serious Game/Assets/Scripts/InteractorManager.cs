@@ -72,8 +72,6 @@ public class InteractorManager : MonoBehaviour {
                 _instance.UpdateDescription(newDescription);
                 break;
             case "Tiles.BarrackTile":
-                var bT = (BarrackTile) tile;
-                Debug.Log(bT.Actions.ToString());
                 newDescription = "This is a Barracks Tile";
                 _instance.UpdateDescription(newDescription);
                 break;
