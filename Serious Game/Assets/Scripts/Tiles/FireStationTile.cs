@@ -6,7 +6,7 @@ namespace Tiles {
         private const string FireStationTileName = "Fire Station";
 
         public FireStationTile(Vector2Int position) : base(position, FireStationTileName) {
-            AddAction(new TileAction("new firefighter", NewFirefighter, IsNewFirefighterActive));
+            AddAction(new TileAction("new firefighter", NewFirefighter, IsNewFirefighterActive,10));
         }
 
         public void NewFirefighter() {

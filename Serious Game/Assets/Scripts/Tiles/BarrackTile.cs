@@ -6,7 +6,7 @@ namespace Tiles {
         private const string BarrackTileName = "Barrack";
 
         public BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
-            AddAction(new TileAction("new military", NewMilitary, IsNewMilitaryActive));
+            AddAction(new TileAction("new military", NewMilitary, IsNewMilitaryActive,20));
         }
 
         public void NewMilitary() {

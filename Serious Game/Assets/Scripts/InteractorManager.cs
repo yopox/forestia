@@ -10,15 +10,19 @@ public class InteractorManager : MonoBehaviour {
     public Text type;
     public Button action1;
     public Text action1Text;
+    public Text action1Price;
     private GameObject _action1Object;
     public Button action2;
     public Text action2Text;
+    public Text action2Price;
     private GameObject _action2Object;
     public Button action3;
     public Text action3Text;
+    public Text action3Price;
     private GameObject _action3Object;
     public Button action4;
     public Text action4Text;
+    public Text action4Price;
     private GameObject _action4Object;
 
 
@@ -59,7 +63,7 @@ public class InteractorManager : MonoBehaviour {
         
         // Tile specific updates
         string newDescription;
-        
+
         switch (tile.GetType().FullName) {
             case "Tiles.ForestTile":
                 var fT = (ForestTile) tile;
@@ -126,6 +130,7 @@ public class InteractorManager : MonoBehaviour {
                         action1.interactable = action.IsActionActive();
                     });
                     action1Text.text = action.Label;
+                    action1Price.text = action.Price + " $";
                     break;
                 case 2:
                     _action2Object.SetActive(true);
@@ -135,6 +140,7 @@ public class InteractorManager : MonoBehaviour {
                         action2.interactable = action.IsActionActive();
                     });
                     action2Text.text = action.Label;
+                    action2Price.text = action.Price + " $";
                     break;
                 case 3:
                     _action3Object.SetActive(true);
@@ -144,6 +150,7 @@ public class InteractorManager : MonoBehaviour {
                         action3.interactable = action.IsActionActive();
                     });
                     action3Text.text = action.Label;
+                    action3Price.text = action.Price + " $";
                     break;
                 case 4:
                     _action4Object.SetActive(true);
@@ -153,6 +160,7 @@ public class InteractorManager : MonoBehaviour {
                         action4.interactable = action.IsActionActive();
                     });
                     action4Text.text = action.Label;
+                    action4Price.text = action.Price + " $";
                     break;
             }
             buttonId += 1;
@@ -172,6 +180,7 @@ public class InteractorManager : MonoBehaviour {
                         action1.interactable = action.IsActionActive();
                     });
                     action1Text.text = action.Label;
+                    action1Price.text = "";
                     break;
                 case 2:
                     _action2Object.SetActive(true);
@@ -181,6 +190,7 @@ public class InteractorManager : MonoBehaviour {
                         action2.interactable = action.IsActionActive();
                     });
                     action2Text.text = action.Label;
+                    action2Price.text = "";
                     break;
                 case 3:
                     _action3Object.SetActive(true);
@@ -190,6 +200,7 @@ public class InteractorManager : MonoBehaviour {
                         action3.interactable = action.IsActionActive();
                     });
                     action3Text.text = action.Label;
+                    action3Price.text = "";
                     break;
                 case 4:
                     _action4Object.SetActive(true);
@@ -199,6 +210,7 @@ public class InteractorManager : MonoBehaviour {
                         action4.interactable = action.IsActionActive();
                     });
                     action4Text.text = action.Label;
+                    action4Price.text = "";
                     break;
             }
             buttonId += 1;
