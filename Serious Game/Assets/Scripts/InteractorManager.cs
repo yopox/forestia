@@ -105,22 +105,38 @@ public class InteractorManager : MonoBehaviour {
             switch (buttonId) {
                 case 1: 
                     _action1Object.SetActive(true);
-                    action1.onClick.AddListener(() => action.Method());
+                    action1.interactable = action.IsActionActive();
+                    action1.onClick.AddListener(() => {
+                        action.Method();
+                        action1.interactable = action.IsActionActive();
+                    });
                     action1Text.text = action.Label;
                     break;
                 case 2:
                     _action2Object.SetActive(true);
-                    action2.onClick.AddListener(() => action.Method());
+                    action2.interactable = action.IsActionActive();
+                    action2.onClick.AddListener(() => {
+                        action.Method();
+                        action2.interactable = action.IsActionActive();
+                    });
                     action2Text.text = action.Label;
                     break;
                 case 3:
                     _action3Object.SetActive(true);
-                    action3.onClick.AddListener(() => action.Method());
+                    action3.interactable = action.IsActionActive();
+                    action3.onClick.AddListener(() => {
+                        action.Method();
+                        action3.interactable = action.IsActionActive();
+                    });
                     action3Text.text = action.Label;
                     break;
                 case 4:
                     _action4Object.SetActive(true);
-                    action4.onClick.AddListener(() => action.Method());
+                    action4.interactable = action.IsActionActive();
+                    action4.onClick.AddListener(() => {
+                        action.Method();
+                        action4.interactable = action.IsActionActive();
+                    });
                     action4Text.text = action.Label;
                     break;
             }

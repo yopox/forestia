@@ -22,6 +22,8 @@ public class ForestManager : MonoBehaviour {
     public TileBase fireStationTile;
     public TileBase labTile;
     public GameObject cursor;
+    public GameObject unitCursor;
+
 
     private const string FOREST_TILE = "tile_forest";
     private const string FIELD_TILE = "tile_field";
@@ -54,6 +56,7 @@ public class ForestManager : MonoBehaviour {
     /// Inits the forest.
     /// </summary>
     public void CreateForest() {
+        unitCursor.SetActive(false);
         Debug.Log("Init forest of size " + forest.size);
 
         var size = forest.size;
@@ -143,12 +146,24 @@ public class ForestManager : MonoBehaviour {
             // ReSharper disable once PossibleNullReferenceException
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
+            Vector3 newPositionOfCursor = forest.CellToWorld(gridPos
+                                                             + forest.origin) +
+                                          new Vector3((float) 16, (float) 16, 0);
+            if (!forest.HasTile(gridPos + forest.origin)) {
+                return;
+            }
 
-            if (forest.HasTile(gridPos + forest.origin)) {
+            var unitOnTile = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y)) != null;
+            var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
+            var unitCursorIsActive = unitCursor.activeSelf;
+            if (unitOnTile && (!unitCursorOnTile || (unitCursorOnTile && !unitCursorIsActive))) {
+                cursor.SetActive(false);
+                unitCursor.SetActive(true);
+                unitCursor.transform.position = newPositionOfCursor;
+            } else {
+                cursor.SetActive(true);
+                unitCursor.SetActive(false);
                 // Move the cursor to the selected tile
-                Vector3 newPositionOfCursor = forest.CellToWorld(gridPos
-                                                                 + forest.origin) +
-                                              new Vector3((float) 16, (float) 16, 0);
                 cursor.transform.position = newPositionOfCursor;
 
                 // Update the GUI with the selected tile
@@ -162,19 +177,23 @@ public class ForestManager : MonoBehaviour {
     public List<AbstractTile> GetNeighbors(AbstractTile tile) {
         var neighbors = new List<AbstractTile>();
 
-        if (tile.Position.x != 0) { // left
+        if (tile.Position.x != 0) {
+            // left
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x - 1, tile.Position.y)));
         }
-        
-        if (tile.Position.x != forest.size.x - 1) { // right
+
+        if (tile.Position.x != forest.size.x - 1) {
+            // right
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x + 1, tile.Position.y)));
         }
-        
-        if (tile.Position.y != 0) { // bottom
+
+        if (tile.Position.y != 0) {
+            // bottom
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y - 1)));
         }
-        
-        if (tile.Position.y != forest.size.y - 1) { // top
+
+        if (tile.Position.y != forest.size.y - 1) {
+            // top
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y + 1)));
         }
 
