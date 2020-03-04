@@ -16,6 +16,12 @@ public class UnitManager : MonoBehaviour {
         }
     }
 
+    public Sprite activist;
+    public Sprite digger;
+    public Sprite firefighter;
+    public Sprite military;
+    public Sprite researcher;
+
     public List<Unit> units = new List<Unit>();
 
     public void SpawnUnit(Unit unit) {
