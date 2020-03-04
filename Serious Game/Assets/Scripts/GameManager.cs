@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
         GameState.Instance.UpdateTexts();
 
         // Random events
-        var dayEvent = EventManager.NewDayEvent();
+        var dayEvent = EventManager.NewDayEvents();
 
         // Forest update
         ForestManager.Instance.Update();

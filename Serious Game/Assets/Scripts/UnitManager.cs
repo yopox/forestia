@@ -21,6 +21,7 @@ public class UnitManager : MonoBehaviour {
     public GameObject firefighter;
     public GameObject military;
     public GameObject researcher;
+    public GameObject farmer;
 
     public List<Unit> units = new List<Unit>();
 

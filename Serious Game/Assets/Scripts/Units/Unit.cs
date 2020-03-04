@@ -10,6 +10,7 @@ namespace Units {
             Position = position;
             CanMove = true;
             Actions = new List<UnitAction>();
+            
         }
 
         /* General attributes */
@@ -38,7 +39,6 @@ namespace Units {
         }
         
         protected void AddAction(UnitAction unitAction) {
-            Debug.Log(unitAction.label);
             Actions = Actions.Append<UnitAction>(unitAction);
         }
 

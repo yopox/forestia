@@ -11,6 +11,7 @@ namespace Tiles {
 
         public void NewFirefighter() {
             UnitManager.Instance.SpawnUnit(new Firefighter(Position));
+            
         }
 
         public bool IsNewFirefighterActive() {
