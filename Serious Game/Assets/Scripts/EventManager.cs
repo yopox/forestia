@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Events;
 using Tiles;
 using UnityEngine;
@@ -31,15 +32,34 @@ public class EventManager : MonoBehaviour {
                     case "ForestTile":
                         var fT = (ForestTile) tile;
 
-                        if (Random.Range(0, 1) < 0.05) { // TODO
-                            var newEvent = new FireEvent(fT);
-                            events.Add(newEvent);
-                            fT.SetFire();
-                            foreach (var newEventInfluence in newEvent.Influences) {
-                                newEventInfluence.Perform(GameState.Instance);
+                        if (fT.InFire) {
+                            // fire propagation
+                            var neighbors = ForestManager.Instance.GetNeighbors(fT);
+                            var forestsNotInFire = neighbors.Where(t => { // filter neighbor to be forests not in fire
+                                if (t.GetType() != typeof(ForestTile)) return false;
+                                return !((ForestTile) t).InFire;
+                            }).ToList();
+                            foreach (var tmpNeighbor in forestsNotInFire) {
+                                if (Random.Range(0, 1) < 0.05) { // TODO
+                                    var tmpForestNeighbor = (ForestTile) tmpNeighbor;
+                                    var newEvent = new FireEvent(tmpForestNeighbor);
+                                    events.Add(newEvent);
+                                    tmpForestNeighbor.SetFire();
+                                    foreach (var newEventInfluence in newEvent.Influences) {
+                                        newEventInfluence.Perform(GameState.Instance);
+                                    }
+                                }
+                            }
+                        } else { // random spontaneous fire
+                            if (Random.Range(0, 1) < 0.05) { // TODO
+                                var newEvent = new FireEvent(fT);
+                                events.Add(newEvent);
+                                fT.SetFire();
+                                foreach (var newEventInfluence in newEvent.Influences) {
+                                    newEventInfluence.Perform(GameState.Instance);
+                                }
                             }
                         }
-                        
                         break;
                 }
             }
