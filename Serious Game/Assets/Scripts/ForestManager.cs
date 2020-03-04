@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -21,7 +22,7 @@ public class ForestManager : MonoBehaviour {
     public TileBase fireStationTile;
     public TileBase labTile;
     public GameObject cursor;
-    
+
     private const string FOREST_TILE = "tile_forest";
     private const string FIELD_TILE = "tile_field";
     private const string FIRE_TILE = "tile_fire";
@@ -132,8 +133,9 @@ public class ForestManager : MonoBehaviour {
                 }
             }
         }
+
         // Cursor is set on origin tile, so updating the interactor accordingly
-        InteractorManager.Instance.UpdateInteractor(_tiles[0,0]);
+        InteractorManager.Instance.UpdateInteractor(_tiles[0, 0]);
     }
 
     public void Update() {
@@ -144,15 +146,38 @@ public class ForestManager : MonoBehaviour {
 
             if (forest.HasTile(gridPos + forest.origin)) {
                 // Move the cursor to the selected tile
-                Vector3 newPositionOfCursor = forest.CellToWorld(gridPos 
-                                                                 + forest.origin) + 
-                                              new Vector3((float) 16,(float) 16, 0);
+                Vector3 newPositionOfCursor = forest.CellToWorld(gridPos
+                                                                 + forest.origin) +
+                                              new Vector3((float) 16, (float) 16, 0);
                 cursor.transform.position = newPositionOfCursor;
-                
+
                 // Update the GUI with the selected tile
-                InteractorManager.Instance.UpdateInteractor(_tiles[gridPos.y,gridPos.x]);
+                InteractorManager.Instance.UpdateInteractor(_tiles[gridPos.y, gridPos.x]);
             }
+
             // TODO: check if unit is on tile, and select unit first
         }
+    }
+
+    public List<AbstractTile> GetNeighbors(AbstractTile tile) {
+        var neighbors = new List<AbstractTile>();
+
+        if (tile.Position.x != 0) { // left
+            neighbors.Add(GetTile(new Vector2Int(tile.Position.x - 1, tile.Position.y)));
+        }
+        
+        if (tile.Position.x != forest.size.x - 1) { // right
+            neighbors.Add(GetTile(new Vector2Int(tile.Position.x + 1, tile.Position.y)));
+        }
+        
+        if (tile.Position.y != 0) { // bottom
+            neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y - 1)));
+        }
+        
+        if (tile.Position.y != forest.size.y - 1) { // top
+            neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y + 1)));
+        }
+
+        return neighbors;
     }
 }
