@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Units {
     public abstract class Unit {
+        public GameObject obj;
+
         protected Unit(Vector2Int position) {
             Position = position;
             CanMove = true;
@@ -16,6 +18,8 @@ namespace Units {
         public abstract int Speed { get; }
         public abstract bool Friendly { get; }
         public abstract bool CPU { get; }
+        
+        public abstract GameObject Prefab { get; }
         public IEnumerable<UnitAction> Actions { get; private set; }
 
         /* Gameplay attributes */
@@ -37,5 +41,6 @@ namespace Units {
             Debug.Log(unitAction.label);
             Actions = Actions.Append<UnitAction>(unitAction);
         }
+
     }
 }

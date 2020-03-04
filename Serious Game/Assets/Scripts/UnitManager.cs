@@ -16,16 +16,19 @@ public class UnitManager : MonoBehaviour {
         }
     }
 
-    public Sprite activist;
-    public Sprite digger;
-    public Sprite firefighter;
-    public Sprite military;
-    public Sprite researcher;
+    public GameObject activist;
+    public GameObject digger;
+    public GameObject firefighter;
+    public GameObject military;
+    public GameObject researcher;
 
     public List<Unit> units = new List<Unit>();
 
     public void SpawnUnit(Unit unit) {
         units.Add(unit);
+        var forest = ForestManager.Instance.forest;
+        var position = forest.CellToWorld(new Vector3Int(unit.Position.x, unit.Position.y, 0) + forest.origin);
+        unit.obj = Instantiate(unit.Prefab, position + new Vector3(16, 16, 0), Quaternion.identity);
     }
 
     public void KillUnit(Unit unit) {

@@ -10,5 +10,6 @@ namespace Units {
         public override int Speed => 1;
         public override bool Friendly => false;
         public override bool CPU => true;
+        public override GameObject Prefab => UnitManager.Instance.digger;
     }
 }

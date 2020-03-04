@@ -10,5 +10,6 @@ namespace Units {
         public override int Speed => 2;
         public override bool Friendly => true;
         public override bool CPU => false;
+        public override GameObject Prefab => UnitManager.Instance.military;
     }
 }
