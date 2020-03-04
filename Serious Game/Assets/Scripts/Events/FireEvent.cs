@@ -3,7 +3,7 @@ using Tiles;
 
 namespace Events {
     public class FireEvent : Event {
-        public FireEvent(AbstractTile abstractTile) : base("Fire", BuildDescription(abstractTile)) {
+        public FireEvent(ForestTile forestTile) : base("Fire", BuildDescription(forestTile)) {
             Influence influence = new AbsoluteInfluence(typeof(Fame),-5);
             AddInfluence(influence);
         }
