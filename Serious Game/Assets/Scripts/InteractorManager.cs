@@ -99,7 +99,6 @@ public class InteractorManager : MonoBehaviour {
     }
 
     private void UpdateActions(AbstractTile tile) {
-        Debug.Log(tile.ToString());
         foreach (var action in tile.Actions) {
             // Iterating through the 4 actions
             var buttonId = 1;

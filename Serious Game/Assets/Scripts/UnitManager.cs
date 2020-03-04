@@ -20,6 +20,7 @@ public class UnitManager : MonoBehaviour {
 
     public void SpawnUnit(Unit unit) {
         units.Add(unit);
+        
     }
 
     public void KillUnit(Unit unit) {

@@ -3,14 +3,14 @@ namespace Units {
     public delegate bool IsActionActive();
 
     public class UnitAction {
-        public string label { get; }
-        public ActionMethod method { get; }
-        public IsActionActive isActionActive { get; }
+        public string Label { get; }
+        public ActionMethod Method { get; }
+        public IsActionActive IsActionActive { get; }
 
         public UnitAction(string label, ActionMethod method, IsActionActive isActionActive) {
-            this.label = label;
-            this.method = method;
-            this.isActionActive = isActionActive;
+            this.Label = label;
+            this.Method = method;
+            this.IsActionActive = isActionActive;
         }
     }
 }
