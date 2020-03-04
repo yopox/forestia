@@ -138,7 +138,7 @@ public class ForestManager : MonoBehaviour {
         }
 
         // Cursor is set on origin tile, so updating the interactor accordingly
-        InteractorManager.Instance.UpdateInteractor(_tiles[0, 0]);
+        InteractorManager.Instance.UpdateInteractorWithTile(_tiles[0, 0]);
     }
 
     public void Update() {
@@ -153,13 +153,15 @@ public class ForestManager : MonoBehaviour {
                 return;
             }
 
-            var unitOnTile = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y)) != null;
+            var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
+            var unitOnTile = unit != null;
             var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
             var unitCursorIsActive = unitCursor.activeSelf;
             if (unitOnTile && (!unitCursorOnTile || (unitCursorOnTile && !unitCursorIsActive))) {
                 cursor.SetActive(false);
                 unitCursor.SetActive(true);
                 unitCursor.transform.position = newPositionOfCursor;
+                InteractorManager.Instance.UpdateInteractorWithUnit(unit);
             } else {
                 cursor.SetActive(true);
                 unitCursor.SetActive(false);
@@ -167,7 +169,7 @@ public class ForestManager : MonoBehaviour {
                 cursor.transform.position = newPositionOfCursor;
 
                 // Update the GUI with the selected tile
-                InteractorManager.Instance.UpdateInteractor(_tiles[gridPos.y, gridPos.x]);
+                InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y, gridPos.x]);
             }
 
             // TODO: check if unit is on tile, and select unit first

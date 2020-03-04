@@ -1,5 +1,6 @@
 using System;
 using Tiles;
+using Units;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,7 @@ public class InteractorManager : MonoBehaviour {
         action4Text.text = "";
     }
 
-    public void UpdateInteractor(AbstractTile tile) {
+    public void UpdateInteractorWithTile(AbstractTile tile) {
         // Start by flushing the actions (setting them to inactive)
         _instance.FlushActions();
         
@@ -54,10 +55,11 @@ public class InteractorManager : MonoBehaviour {
         type.text = tile.GetType().Name.ToUpper();
         
         //Update actions
-        _instance.UpdateActions(tile);
+        _instance.UpdateActionsWithTile(tile);
         
         // Tile specific updates
         string newDescription;
+        
         switch (tile.GetType().FullName) {
             case "Tiles.ForestTile":
                 var fT = (ForestTile) tile;
@@ -94,12 +96,71 @@ public class InteractorManager : MonoBehaviour {
         }
     }
 
+    public void UpdateInteractorWithUnit(Unit unit) {
+        // Start by flushing the actions (setting them to inactive)
+        _instance.FlushActions();
+        
+        // Update type
+        type.text = unit.GetType().Name.ToUpper();
+        
+        //Update actions
+        _instance.UpdateActionsWithUnit(unit);
+        _instance.UpdateDescription(unit.Description);
+    }
+
+    
     private void UpdateDescription(string newDescription) {
         description.text = newDescription;
     }
 
-    private void UpdateActions(AbstractTile tile) {
+    private void UpdateActionsWithTile(AbstractTile tile) {
         foreach (var action in tile.Actions) {
+            // Iterating through the 4 actions
+            var buttonId = 1;
+            switch (buttonId) {
+                case 1: 
+                    _action1Object.SetActive(true);
+                    action1.interactable = action.IsActionActive();
+                    action1.onClick.AddListener(() => {
+                        action.Method();
+                        action1.interactable = action.IsActionActive();
+                    });
+                    action1Text.text = action.Label;
+                    break;
+                case 2:
+                    _action2Object.SetActive(true);
+                    action2.interactable = action.IsActionActive();
+                    action2.onClick.AddListener(() => {
+                        action.Method();
+                        action2.interactable = action.IsActionActive();
+                    });
+                    action2Text.text = action.Label;
+                    break;
+                case 3:
+                    _action3Object.SetActive(true);
+                    action3.interactable = action.IsActionActive();
+                    action3.onClick.AddListener(() => {
+                        action.Method();
+                        action3.interactable = action.IsActionActive();
+                    });
+                    action3Text.text = action.Label;
+                    break;
+                case 4:
+                    _action4Object.SetActive(true);
+                    action4.interactable = action.IsActionActive();
+                    action4.onClick.AddListener(() => {
+                        action.Method();
+                        action4.interactable = action.IsActionActive();
+                    });
+                    action4Text.text = action.Label;
+                    break;
+            }
+            buttonId += 1;
+        }
+    }
+    
+    private void UpdateActionsWithUnit(Unit unit) {
+        foreach (var action in unit.Actions) {
             // Iterating through the 4 actions
             var buttonId = 1;
             switch (buttonId) {
