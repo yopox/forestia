@@ -32,5 +32,9 @@ namespace MainMenu {
             }
             Debug.Log("[Main Menu] Options button clicked");
         }
+
+        public void Exit() {
+            Application.Quit();
+        }
     }
 }
