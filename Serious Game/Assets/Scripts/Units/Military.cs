@@ -2,14 +2,9 @@ using UnityEngine;
 
 namespace Units {
     public class Military : Unit {
-        public Military(Vector2Int position) : base(position) {
+        public Military(Vector2Int position) : base(position, "Military", "Helps protecting the forest.", 2, true, false) {
         }
 
-        public override string Name => "Military";
-        public override string Description => "Helps protecting the forest.";
-        public override int Speed => 2;
-        public override bool Friendly => true;
-        public override bool CPU => false;
         public override GameObject Prefab => UnitManager.Instance.military;
     }
 }

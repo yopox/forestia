@@ -4,15 +4,10 @@ using UnityEngine;
 
 namespace Units {
     public class Researcher : Unit {
-        public Researcher(Vector2Int position) : base(position) {
+        public Researcher(Vector2Int position) : base(position, "Researcher", "Can discover new species.", 3, true, false) {
             AddAction(new PricedAction("search", Search, IsSearchActive, 0));
         }
 
-        public override string Name => "Researcher";
-        public override string Description => "Can discover new species.";
-        public override int Speed => 3;
-        public override bool Friendly => true;
-        public override bool CPU => false;
         public override GameObject Prefab => UnitManager.Instance.researcher;
 
         public void Search() {

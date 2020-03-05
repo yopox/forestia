@@ -33,11 +33,15 @@ public class GameManager : MonoBehaviour {
 
         // Forest update
         ForestManager.Instance.Update();
+        
+        // Restore actionPoints on units
+        UnitManager.Instance.RestoreActionPoints();
 
         // Points calculation
 
         // New turn popup
         DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
+        DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
 
         // Ally CPU turn
         UnitManager.Instance.AllyCPUTurn();

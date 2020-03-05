@@ -71,7 +71,7 @@ public class InteractorManager : MonoBehaviour {
         _instance.FlushActions();
         
         // Update type
-        type.text = unit.GetType().Name.ToUpper();
+        type.text = unit.GetType().Name.ToUpper() + " (" + unit.CurrentActionPoints + " / " + unit.ActionPoints + ")";
         
         // Update actions
         _instance.UpdateActionsWithUnit(unit);
@@ -100,7 +100,7 @@ public class InteractorManager : MonoBehaviour {
                     action1Text.text = action.Label;
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
-                        action1Price.text = pricedAction.Price + " $";
+                        action1Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
                     }
                     break;
                 case 2:
@@ -113,7 +113,7 @@ public class InteractorManager : MonoBehaviour {
                     action2Text.text = action.Label;
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
-                        action2Price.text = pricedAction.Price + " $";
+                        action2Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
                     }
                     break;
                 case 3:
@@ -126,7 +126,7 @@ public class InteractorManager : MonoBehaviour {
                     action3Text.text = action.Label;
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
-                        action3Price.text = pricedAction.Price + " $";
+                        action3Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
                     }
                     break;
                 case 4:
@@ -139,7 +139,7 @@ public class InteractorManager : MonoBehaviour {
                     action4Text.text = action.Label;
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
-                        action4Price.text = pricedAction.Price + " $";
+                        action4Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
                     }
                     break;
             }
