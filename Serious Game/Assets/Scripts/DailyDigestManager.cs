@@ -54,8 +54,8 @@ public class DailyDigestManager : MonoBehaviour {
     }
 
     private void FlushEvents() {
-        headline1.text = "";
-        description1.text = "";
+        headline1.text = "We good pal";
+        description1.text = "No events today !";
         headline2.text = "";
         description2.text = "";
     }
