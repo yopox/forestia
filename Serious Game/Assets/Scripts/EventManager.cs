@@ -24,9 +24,14 @@ public class EventManager : MonoBehaviour {
     /// <returns>A <c>DayEvent</c>, or <value>DayEvent.None</value> according to <value>EventProbability</value>.</returns>
     public static List<Event> NewDayEvents() {
         var events = new List<Event>();
-
+        
         for (var y = 0; y < ForestManager.Instance.forest.size.y; y++) {
             for (var x = 0; x < ForestManager.Instance.forest.size.x; x++) {
+
+                if (events.Count == 2) {
+                    return events;
+                }
+                
                 var tile = ForestManager.Instance.GetTile(new Vector2Int(x, y));
                 switch (tile.GetType().FullName) {
                     case "ForestTile":
