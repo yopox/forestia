@@ -7,20 +7,27 @@ namespace Units {
     public abstract class Unit {
         public GameObject obj;
 
-        protected Unit(Vector2Int position) {
+        /* General attributes */
+        public string Name { get; }
+        public string Description { get; }
+        public int ActionPoints { get; }
+        public int CurrentActionPoints { get; set; }
+        public bool Friendly { get; }
+        public bool CPU { get; }
+
+        protected Unit(Vector2Int position, string name, string description, int actionPoints, bool friendly,
+            bool cpu) {
             Position = position;
             CanMove = true;
             Actions = new List<Action>();
-            
+            Name = name;
+            Description = description;
+            ActionPoints = actionPoints;
+            Friendly = friendly;
+            CPU = cpu;
+            CurrentActionPoints = ActionPoints;
         }
 
-        /* General attributes */
-        public abstract string Name { get; }
-        public abstract string Description { get; }
-        public abstract int Speed { get; }
-        public abstract bool Friendly { get; }
-        public abstract bool CPU { get; }
-        
         public abstract GameObject Prefab { get; }
         public List<Action> Actions { get; private set; }
 
@@ -38,10 +45,18 @@ namespace Units {
 
             // TODO: Show actions
         }
-        
+
         protected void AddAction(Action action) {
+            action.Method = () => {
+                CurrentActionPoints = 0;
+                action.Method();
+            };
+            action.IsActionActive = () => CurrentActionPoints != 0 && action.IsActionActive();
             Actions.Add(action);
         }
 
+        public void RestoreCurrentActionPoints() {
+            CurrentActionPoints = ActionPoints;
+        }
     }
 }

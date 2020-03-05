@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour {
 
         // Forest update
         ForestManager.Instance.Update();
+        
+        // Restore actionPoints on units
+        UnitManager.Instance.RestoreActionPoints();
 
         // Points calculation
 

@@ -71,7 +71,7 @@ public class InteractorManager : MonoBehaviour {
         _instance.FlushActions();
         
         // Update type
-        type.text = unit.GetType().Name.ToUpper();
+        type.text = unit.GetType().Name.ToUpper() + " (" + unit.CurrentActionPoints + " / " + unit.ActionPoints + ")";
         
         // Update actions
         _instance.UpdateActionsWithUnit(unit);

@@ -61,4 +61,10 @@ public class UnitManager : MonoBehaviour {
         }
         return null;
     }
+
+    public void RestoreActionPoints() {
+        foreach (var unit in units) {
+            unit.RestoreCurrentActionPoints();
+        }
+    }
 }
