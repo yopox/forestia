@@ -44,7 +44,6 @@ public class GlossaryManager : MonoBehaviour {
     }
 
     public void NextPage() {
-        Debug.Log($"pageNb : {_pageNb} ; len {_categories.Length}");
         _pageNb = (_pageNb + 1) % _categories.Length;
         UpdateGlossary();
     }
@@ -57,6 +56,6 @@ public class GlossaryManager : MonoBehaviour {
     public void UpdateGlossary() {
         category.text = _categories[_pageNb];
         description.text = _descriptions[_pageNb];
-        page.text = $"PAGE {_pageNb + 1} / {_categories.Length}";
+        page.text = $"PAGE {_pageNb + 1}/{_categories.Length}";
     }
 }
