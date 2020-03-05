@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour {
     
     public GameObject menu;
     private static readonly int Open = Animator.StringToHash("open");
+    private static readonly int Close = Animator.StringToHash("close");
 
     public void OpenInformations() {
         
@@ -23,11 +24,14 @@ public class MenuController : MonoBehaviour {
     }
 
     public void OpenMenu() {
-        menu.GetComponent<Animator>().SetBool(Open, true);
         menu.SetActive(true);
+        menu.GetComponent<Animator>().SetBool(Close, false);
+        menu.GetComponent<Animator>().SetBool(Open, true);
     }
 
     public void CloseMenu() {
         menu.GetComponent<Animator>().SetBool(Open, false);
+        menu.GetComponent<Animator>().SetBool(Close, true);
+        GameManager.Instance.ReturnToGame();
     }
 }

@@ -154,7 +154,7 @@ public class ForestManager : MonoBehaviour {
         Vector3Int origin = forest.origin;
         Vector3Int gridPos = forest.WorldToCell(mousePos) - origin;
         Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + origin) +
-                                      new Vector3((float) 16, (float) 16, 0);
+                                      new Vector3(16, 16, 0);
 
         if (!forest.HasTile(gridPos + forest.origin)) {
             return; // click outside of the map
