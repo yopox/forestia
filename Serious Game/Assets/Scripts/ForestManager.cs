@@ -117,6 +117,7 @@ public class ForestManager : MonoBehaviour {
                             forest.SetTile(position, fieldTile);
                         else if (!fT.OnFire && fT.Level == 1 && displayed != FOREST_TILE)
                             forest.SetTile(position, forestTile);
+
                         break;
                     case "Tiles.RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
@@ -155,16 +156,15 @@ public class ForestManager : MonoBehaviour {
         Vector3Int gridPos = forest.WorldToCell(mousePos) - origin;
         Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + origin) +
                                       new Vector3((float) 16, (float) 16, 0);
-        
+
         if (!forest.HasTile(gridPos + forest.origin)) {
             return; // click outside of the map
         }
 
         var positionClicked = new Vector2Int(gridPos.x, gridPos.y);
-        
+
         // Forest mode
         if (GameManager.Instance.state == ClickState.Forest) {
-
             var unit = UnitManager.Instance.GetUnit(positionClicked);
 
             var unitOnTile = unit != null;
@@ -177,7 +177,8 @@ public class ForestManager : MonoBehaviour {
                 unitCursor.SetActive(true);
                 unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
                 InteractorManager.Instance.UpdateInteractorWithUnit(unit); // Update the GUI with the selected unit
-            } else {
+            }
+            else {
                 // should select tile instead of the unit on it
                 cursor.SetActive(true);
                 unitCursor.SetActive(false);
@@ -185,19 +186,23 @@ public class ForestManager : MonoBehaviour {
                 InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y,
                     gridPos.x]); // Update the GUI with the selected tile
             }
-        }
-        // Move Mode
-        else if (GameManager.Instance.state == ClickState.MoveUnit) {
-
+        } else if (GameManager.Instance.state == ClickState.MoveUnit) { // Move Mode
             if (UnitManager.Instance.GetUnit(positionClicked) != null) {
+                Debug.Log("Could not move because a unit is already present");
                 return; // cannot move there if a unit is already present
             }
 
             var unitToMovePosition = forest.WorldToCell(unitCursor.transform.position) - origin;
             var unitToMove = UnitManager.Instance.GetUnit(new Vector2Int(unitToMovePosition.x, unitToMovePosition.y));
-            
+
             // try to move
-            unitToMove.MoveTo(_tiles[gridPos.y, gridPos.x]);
+            var success = unitToMove.MoveTo(_tiles[gridPos.y, gridPos.x]);
+            if (success) {
+                UpdateTileMap();
+                GameManager.Instance.UnitMoved();
+                unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
+                InteractorManager.Instance.UpdateInteractorWithUnit(unitToMove); // Update the GUI with the selected unit
+            }
         }
     }
 

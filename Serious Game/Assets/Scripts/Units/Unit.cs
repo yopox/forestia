@@ -36,7 +36,7 @@ namespace Units {
         public List<Action> Actions { get; private set; }
 
         /* Gameplay attributes */
-        public Vector2Int Position { get; }
+        public Vector2Int Position { get; set; }
         public bool CanMove { get; }
 
         /// <summary>
@@ -58,18 +58,26 @@ namespace Units {
             CurrentActionPoints = ActionPoints;
         }
 
-        public void MoveTo(AbstractTile destination) {
+        public bool MoveTo(AbstractTile destination) {
             var distanceX = Math.Abs(Position.x - destination.Position.x);
             var distanceY = Math.Abs(Position.y - destination.Position.y);
             var distance = distanceX + distanceY;
             if (distance > CurrentActionPoints) {
                 // you do not have enough actionPoints to move
-                return;
+                return false;
             }
 
             // move authorize
             CurrentActionPoints -= distance; // remove points
-            Position.Set(destination.Position.x, destination.Position.y); // move unit
+            Position = new Vector2Int(destination.Position.x, destination.Position.y); // move unit
+            obj.transform.position =
+                ForestManager.Instance.forest.CellToWorld(
+                    new Vector3Int(destination.Position.x, destination.Position.y, 0) +
+                    ForestManager.Instance.forest.origin) +
+                new Vector3((float) 16, (float) 16, 0
+                );
+
+            return true;
         }
     }
 }
