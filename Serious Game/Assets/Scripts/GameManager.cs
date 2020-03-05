@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndTurn() {
         if (state == ClickState.Forest || state == ClickState.MoveUnit) {
-            state = ClickState.DailyDigest;
+            state = ClickState.EnemyTurn;
             Debug.Log("End turn");
             // Display "Enemy turn"
 
