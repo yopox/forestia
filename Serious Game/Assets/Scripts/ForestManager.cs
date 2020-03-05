@@ -110,12 +110,12 @@ public class ForestManager : MonoBehaviour {
                 switch (tile.GetType().FullName) {
                     case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
-                        if (fT.InFire && displayed != FIRE_TILE) {
+                        if (fT.OnFire && displayed != FIRE_TILE) {
                             forest.SetTile(position, fireTile);
                         }
-                        else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE)
+                        else if (!fT.OnFire && fT.Level == 0 && displayed != FIELD_TILE)
                             forest.SetTile(position, fieldTile);
-                        else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE)
+                        else if (!fT.OnFire && fT.Level == 1 && displayed != FOREST_TILE)
                             forest.SetTile(position, forestTile);
                         break;
                     case "Tiles.RiverTile":

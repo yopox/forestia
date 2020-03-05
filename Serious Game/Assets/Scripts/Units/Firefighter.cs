@@ -20,7 +20,7 @@ namespace Units {
             }
             var tile = ForestManager.Instance.GetTile(Position);
             if (tile is ForestTile) {
-                return ((ForestTile) tile).InFire;
+                return ((ForestTile) tile).OnFire;
             }
             return false;
         }

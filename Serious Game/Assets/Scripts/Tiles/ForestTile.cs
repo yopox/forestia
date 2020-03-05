@@ -3,20 +3,20 @@ using UnityEngine;
 namespace Tiles {
     public class ForestTile : BiodiversityTile {
         private const string ForestTileName = "Forest";
-        private bool _inFire;
+        private bool _onFire;
 
-        public bool InFire => _inFire;
+        public bool OnFire => _onFire;
 
         public ForestTile(Vector2Int position) : base(position, ForestTileName) {
-            _inFire = false;
+            _onFire = false;
         }
 
         public void SetFire() {
-            _inFire = true;
+            _onFire = true;
         }
 
         public new int GetBiodiversityScore() {
-            if (_inFire) {
+            if (_onFire) {
                 return 0; // score of 0 if forest tile in fire
             }
 
@@ -24,7 +24,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return _inFire ? "Forest in fire" : "Forest";
+            return _onFire ? "Forest on fire" : "Forest";
         }
     }
 }
