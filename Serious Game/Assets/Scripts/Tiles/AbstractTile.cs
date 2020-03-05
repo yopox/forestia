@@ -8,6 +8,7 @@ namespace Tiles {
         public Vector2Int Position { get; }
         public string Name { get; }
         public IEnumerable<TileAction> Actions { get; private set; }
+        public abstract string GetDescription();
 
         protected AbstractTile(Vector2Int position, string name) {
             Level = 1;

@@ -17,5 +17,9 @@ namespace Tiles {
             var unitOrNull = UnitManager.Instance.GetUnit(Position);
             return unitOrNull == null;
         }
+
+        public override string GetDescription() {
+            return "Laboratory building";
+        }
     }
 }

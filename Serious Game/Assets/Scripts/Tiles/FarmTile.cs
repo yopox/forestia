@@ -6,5 +6,9 @@ namespace Tiles {
 
         public FarmTile(Vector2Int position) : base(position, FarmTileName) {
         }
+
+        public override string GetDescription() {
+            return "Farm building";
+        }
     }
 }

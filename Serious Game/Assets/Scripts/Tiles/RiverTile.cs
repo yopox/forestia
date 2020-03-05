@@ -6,5 +6,9 @@ namespace Tiles {
 
         public RiverTile(Vector2Int position) : base(position, RiverTileName) {
         }
+
+        public override string GetDescription() {
+            return "River";
+        }
     }
 }

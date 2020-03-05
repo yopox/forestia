@@ -22,5 +22,9 @@ namespace Tiles {
 
             return base.GetBiodiversityScore();
         }
+
+        public override string GetDescription() {
+            return _inFire ? "Forest in fire" : "Forest";
+        }
     }
 }
