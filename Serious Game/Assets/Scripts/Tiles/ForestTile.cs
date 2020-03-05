@@ -28,7 +28,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return _onFire ? "Forest on fire" : "Forest";
+            return _onFire ? "Forest on fire." : $"Forest (level {Level}).";
         }
     }
 }

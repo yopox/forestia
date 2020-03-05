@@ -57,7 +57,7 @@ public class InteractorManager : MonoBehaviour {
         _instance.FlushActions();
         
         // Update type
-        type.text = tile.GetType().Name.ToUpper();
+        type.text = tile.Name.ToUpper();
         
         //Update actions
         _instance.UpdateActionsWithTile(tile);
@@ -71,13 +71,13 @@ public class InteractorManager : MonoBehaviour {
         _instance.FlushActions();
         
         // Update type
-        type.text = unit.GetType().Name.ToUpper() + " (" + unit.CurrentActionPoints + " / " + unit.ActionPoints + ")";
+        type.text = $"{unit.Name.ToUpper()}";
         
         // Update actions
         _instance.UpdateActionsWithUnit(unit);
         
         // Update Description
-        _instance.UpdateDescription(unit.Description);
+        _instance.UpdateDescription($"{unit.CurrentActionPoints} moves left.\n{unit.Description}");
     }
 
     

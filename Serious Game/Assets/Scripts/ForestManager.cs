@@ -185,7 +185,9 @@ public class ForestManager : MonoBehaviour {
                 InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y,
                     gridPos.x]); // Update the GUI with the selected tile
             }
-        } else if (GameManager.Instance.state == ClickState.MoveUnit) { // Move Mode
+        }
+        else if (GameManager.Instance.state == ClickState.MoveUnit) {
+            // Move Mode
             if (UnitManager.Instance.GetUnit(positionClicked) != null) {
                 Debug.Log("Could not move because a unit is already present");
                 return; // cannot move there if a unit is already present
@@ -200,7 +202,8 @@ public class ForestManager : MonoBehaviour {
                 UpdateTileMap();
                 GameManager.Instance.UnitMoved();
                 unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
-                InteractorManager.Instance.UpdateInteractorWithUnit(unitToMove); // Update the GUI with the selected unit
+                InteractorManager.Instance
+                    .UpdateInteractorWithUnit(unitToMove); // Update the GUI with the selected unit
             }
         }
     }

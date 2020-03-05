@@ -20,7 +20,8 @@ public class MenuController : MonoBehaviour {
     }
 
     public void SaveAndQuit() {
-        
+        // TODO: Save
+        Application.Quit();
     }
 
     public void OpenMenu() {

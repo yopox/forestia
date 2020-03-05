@@ -8,7 +8,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return "Farm building";
+            return "A farm.";
         }
     }
 }
