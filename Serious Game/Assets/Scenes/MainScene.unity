@@ -4679,9 +4679,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Oh no!
+  m_Text: 'This game is here for you to learn more on how to manage a forest:
 
-    A fire broke out on parcel [2, 8]!'
+
+    - Select the tiles and see their actions
+
+
+    - Create unit, move them, and try their actions.
+
+
+    - Next turn: press the -> button
+
+
+'
 --- !u!222 &1000478659
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5549,7 +5559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: It's getting hot...
+  m_Text: 
 --- !u!222 &1463897304
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6593,7 +6603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: It's getting hot...
+  m_Text: Welcome to Forestia !
 --- !u!222 &1828122748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6961,9 +6971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Oh no!
-
-    A fire broke out on parcel [2, 8]!'
+  m_Text: 
 --- !u!222 &1941736131
 CanvasRenderer:
   m_ObjectHideFlags: 0

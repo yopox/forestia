@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
             
             // Ally CPU turn
             UnitManager.Instance.AllyCPUTurn();
+            DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
         } else if (state == ClickState.Start) {
             state = ClickState.DailyDigest;
             Debug.Log("First turn");
@@ -61,7 +62,6 @@ public class GameManager : MonoBehaviour {
         // Points calculation
 
         // New turn popup
-        DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
         DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
         
         // Updating changes on Tile Map

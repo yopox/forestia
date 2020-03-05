@@ -5,12 +5,15 @@ using UnityEngine;
 namespace Tiles {
     public class LaboratoryTile : BuildingTile {
         private const string LaboratoryTileName = "Laboratory";
+        private const int ResearcherCost = 20;
 
         public LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
-            AddAction(new PricedAction("new scientist", NewResearcher, IsNewResearcherActive,20));
+            AddAction(new PricedAction("new scientist", NewResearcher, IsNewResearcherActive,ResearcherCost));
         }
 
         public void NewResearcher() {
+            GameState.Instance.money.Value -= ResearcherCost;
+            GameState.Instance.UpdateTexts();
             UnitManager.Instance.SpawnUnit(new Researcher(Position));
         }
 

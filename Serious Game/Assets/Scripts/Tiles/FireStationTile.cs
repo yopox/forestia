@@ -5,12 +5,15 @@ using UnityEngine;
 namespace Tiles {
     public class FireStationTile : BuildingTile {
         private const string FireStationTileName = "Fire Station";
+        private const int FirefighterCost = 10;
 
         public FireStationTile(Vector2Int position) : base(position, FireStationTileName) {
-            AddAction(new PricedAction("new firefighter", NewFirefighter, IsNewFirefighterActive,10));
+            AddAction(new PricedAction("new firefighter", NewFirefighter, IsNewFirefighterActive,FirefighterCost));
         }
 
         public void NewFirefighter() {
+            GameState.Instance.money.Value -= FirefighterCost;
+            GameState.Instance.UpdateTexts();
             UnitManager.Instance.SpawnUnit(new Firefighter(Position));
             
         }
