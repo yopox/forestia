@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviour {
     /// Called at the beginning of a turn.
     /// </summary>
     public void NewTurn() {
+        Debug.Log("New turn");
         GameState.Instance.round += 1;
         GameState.Instance.UpdateTexts();
 
         // Random events
-        var dayEvent = EventManager.NewDayEvents();
+        var dayEvents = EventManager.NewDayEvents();
 
         // Forest update
         ForestManager.Instance.Update();
@@ -36,12 +37,14 @@ public class GameManager : MonoBehaviour {
         // Points calculation
 
         // New turn popup
+        DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
 
         // Ally CPU turn
         UnitManager.Instance.AllyCPUTurn();
     }
 
     public void EndTurn() {
+        Debug.Log("End turn");
         // Display "Enemy turn"
 
         // Enemy turn

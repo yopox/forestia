@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Event = Events.Event;
 
 public class DailyDigestManager : MonoBehaviour {
         public GameObject dailyDigest;
@@ -17,5 +20,11 @@ public class DailyDigestManager : MonoBehaviour {
         /// </summary>
         public void CloseDd() {
                 dailyDigest.SetActive(false);
+        }
+
+        public void UpdateWithEvents(List<Event> dayEvents) {
+                foreach (var dayEvent in dayEvents) {
+                        
+                }
         }
 }

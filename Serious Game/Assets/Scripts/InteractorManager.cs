@@ -61,43 +61,8 @@ public class InteractorManager : MonoBehaviour {
         //Update actions
         _instance.UpdateActionsWithTile(tile);
         
-        // Tile specific updates
-        string newDescription;
-
-        switch (tile.GetType().FullName) {
-            case "Tiles.ForestTile":
-                var fT = (ForestTile) tile;
-                newDescription = "This is a Forest Tile";
-                if (fT.InFire) {
-                    newDescription += "\nThis tile is on fire !";
-                };
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.RiverTile":
-                newDescription = "This is a River Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.BarrackTile":
-                newDescription = "This is a Barracks Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.FarmTile":
-                newDescription = "This is a Farm Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.FarmFieldTile":
-                newDescription = "This is a Farm Field Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.FireStationTile":
-                newDescription = "This is a Fire Station Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-            case "Tiles.LaboratoryTile":
-                newDescription = "This is a Lab Tile";
-                _instance.UpdateDescription(newDescription);
-                break;
-        }
+        // Update Description
+        _instance.UpdateDescription(tile.GetDescription());
     }
 
     public void UpdateInteractorWithUnit(Unit unit) {
@@ -107,8 +72,10 @@ public class InteractorManager : MonoBehaviour {
         // Update type
         type.text = unit.GetType().Name.ToUpper();
         
-        //Update actions
+        // Update actions
         _instance.UpdateActionsWithUnit(unit);
+        
+        // Update Description
         _instance.UpdateDescription(unit.Description);
     }
 
