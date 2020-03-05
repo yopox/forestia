@@ -5,11 +5,7 @@ using UnityEngine.UI;
 
 public class GlossaryManager : MonoBehaviour {
     private static GlossaryManager _instance;
-
-    public GlossaryManager() {
-        UpdateGlossary();
-    }
-
+    
     public static GlossaryManager Instance {
         get {
             if (_instance == null) _instance = FindObjectOfType<GlossaryManager>();
@@ -23,12 +19,12 @@ public class GlossaryManager : MonoBehaviour {
     public Text page;
     private int _pageNb;
 
-    private string[] _categories = new string[] {
+    private readonly string[] _categories = new string[] {
         "Amazon Rainforest",
         "Climate Change"
     };
 
-    private string[] _descriptions = new string[] {
+    private readonly string[] _descriptions = new string[] {
         "The Amazon is burning. Around 73,000 km2 of land was burnt in the Amazon rainforest of Brazil in 2019.\n\nAnd they continue into 2020. Soaring deforestation is one of the main causes of these fires. We must fight the causes and protect this precious place. - WWF",
         "The Amazon is at the heart of global climate concerns.\n\nNot only does the destruction of rainforests add to carbon dioxide in the atmosphere, it creates a 'positive feedback loop', where increased deforestation causes a rise in temperatures which in turn can bring about a drying of tropical forests and increase the risk of forest fires. - WWF"
     };

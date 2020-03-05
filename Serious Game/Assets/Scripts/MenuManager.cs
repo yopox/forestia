@@ -15,8 +15,9 @@ public class MenuManager : MonoBehaviour {
     private static readonly int Open = Animator.StringToHash("open");
     private static readonly int Close = Animator.StringToHash("close");
 
-    public void OpenInformations() {
-        
+    public void OpenGlossary() {
+        GlossaryManager.Instance.UpdateGlossary();
+        GlossaryManager.Instance.OpenGlossary();
     }
 
     public void SaveAndQuit() {
