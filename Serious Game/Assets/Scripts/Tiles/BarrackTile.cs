@@ -5,13 +5,15 @@ using UnityEngine;
 namespace Tiles {
     public class BarrackTile : BuildingTile {
         private const string BarrackTileName = "Barrack";
-        private const int MilitaryCost = 10;
+        private const int MilitaryCost = 20;
 
         public BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
-            AddAction(new PricedAction("new military", NewMilitary, IsNewMilitaryActive,20));
+            AddAction(new PricedAction("new military", NewMilitary, IsNewMilitaryActive,MilitaryCost));
         }
 
         public void NewMilitary() {
+            GameState.Instance.money.Value -= MilitaryCost;
+            GameState.Instance.UpdateTexts();
             UnitManager.Instance.SpawnUnit(new Military(Position));
         }
 
