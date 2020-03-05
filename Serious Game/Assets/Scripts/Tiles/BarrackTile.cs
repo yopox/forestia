@@ -8,7 +8,7 @@ namespace Tiles {
         private const int MilitaryCost = 20;
 
         public BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
-            AddAction(new PricedAction("new military", NewMilitary, IsNewMilitaryActive,MilitaryCost));
+            AddAction(new PricedAction("Hire", NewMilitary, IsNewMilitaryActive,MilitaryCost));
         }
 
         public void NewMilitary() {
@@ -23,7 +23,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return "Military building";
+            return "Military can be hired here.";
         }
     }
 }

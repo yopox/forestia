@@ -8,7 +8,7 @@ namespace Tiles {
         private const int FirefighterCost = 10;
 
         public FireStationTile(Vector2Int position) : base(position, FireStationTileName) {
-            AddAction(new PricedAction("new firefighter", NewFirefighter, IsNewFirefighterActive, FirefighterCost));
+            AddAction(new PricedAction("Hire", NewFirefighter, IsNewFirefighterActive, FirefighterCost));
         }
 
         public void NewFirefighter() {
@@ -23,7 +23,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return "Fire station building";
+            return "Firefighters can be hired here.";
         }
     }
 }

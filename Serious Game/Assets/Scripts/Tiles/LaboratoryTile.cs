@@ -8,7 +8,7 @@ namespace Tiles {
         private const int ResearcherCost = 20;
 
         public LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
-            AddAction(new PricedAction("new scientist", NewResearcher, IsNewResearcherActive,ResearcherCost));
+            AddAction(new PricedAction("Hire", NewResearcher, IsNewResearcherActive,ResearcherCost));
         }
 
         public void NewResearcher() {
@@ -23,7 +23,7 @@ namespace Tiles {
         }
 
         public override string GetDescription() {
-            return "Laboratory building";
+            return "Researchers can be hired here.";
         }
     }
 }
