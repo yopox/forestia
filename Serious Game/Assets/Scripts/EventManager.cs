@@ -32,20 +32,24 @@ public class EventManager : MonoBehaviour {
                     return events;
                 }
                 
-                var tile = ForestManager.Instance.GetTile(new Vector2Int(x, y));
+                var tile = ForestManager.Instance.GetTile(new Vector2Int(x, y)); // for each tile on the map
+                
                 switch (tile.GetType().FullName) {
-                    case "ForestTile":
+                    case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
-
                         if (fT.InFire) {
+                            
                             // fire propagation
+                            
                             var neighbors = ForestManager.Instance.GetNeighbors(fT);
-                            var forestsNotInFire = neighbors.Where(t => { // filter neighbor to be forests not in fire
+                            
+                            var forestsNotInFire = neighbors.Where(t => { // filter neighbor to be only leave forest tiles that are not already in fire
                                 if (t.GetType() != typeof(ForestTile)) return false;
                                 return !((ForestTile) t).InFire;
                             }).ToList();
+                            
                             foreach (var tmpNeighbor in forestsNotInFire) {
-                                if (Random.Range(0.0f, 1.0f) < 1) { // TODO
+                                if (Random.Range(0.0f, 100.0f) < 15) { // TODO
                                     Debug.Log("Adding Fire Event on neighbor");
                                     var tmpForestNeighbor = (ForestTile) tmpNeighbor;
                                     var newEvent = new FireEvent(tmpForestNeighbor);
@@ -57,7 +61,7 @@ public class EventManager : MonoBehaviour {
                                 }
                             }
                         } else { // random spontaneous fire
-                            if (Random.Range(0.0f, 1.0f) < 1) { // TODO
+                            if (Random.Range(0.0f, 100.0f) < 1) { // TODO
                                 Debug.Log("Adding Fire Event");
                                 var newEvent = new FireEvent(fT);
                                 events.Add(newEvent);
