@@ -142,60 +142,55 @@ public class ForestManager : MonoBehaviour {
     }
 
     public void Update() {
-        if (GameManager.Instance.state == ClickState.Forest && Input.GetMouseButtonDown(0)) {
-            // ReSharper disable once PossibleNullReferenceException
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
-            Vector3 newPositionOfCursor = forest.CellToWorld(gridPos
-                                                             + forest.origin) +
-                                          new Vector3((float) 16, (float) 16, 0);
-            if (!forest.HasTile(gridPos + forest.origin)) {
-                return;
-            }
+        if (GameManager.Instance.state != ClickState.Forest || !Input.GetMouseButtonDown(0)) {
+            return; // should be in forest state and a click should have been fired    
+        }
 
-            var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
-            var unitOnTile = unit != null;
-            var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
-            var unitCursorIsActive = unitCursor.activeSelf;
-            if (unitOnTile && (!unitCursorOnTile || (unitCursorOnTile && !unitCursorIsActive))) {
-                cursor.SetActive(false);
-                unitCursor.SetActive(true);
-                unitCursor.transform.position = newPositionOfCursor;
-                InteractorManager.Instance.UpdateInteractorWithUnit(unit);
-            } else {
-                cursor.SetActive(true);
-                unitCursor.SetActive(false);
-                // Move the cursor to the selected tile
-                cursor.transform.position = newPositionOfCursor;
+        // ReSharper disable once PossibleNullReferenceException
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
+        Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + forest.origin) +
+                                      new Vector3((float) 16, (float) 16, 0);
 
-                // Update the GUI with the selected tile
-                InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y, gridPos.x]);
-            }
+        if (!forest.HasTile(gridPos + forest.origin)) {
+            return; // click outside of the map
+        }
 
-            // TODO: check if unit is on tile, and select unit first
+        var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
+
+        var unitOnTile = unit != null;
+        var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
+        var unitCursorIsActive = unitCursor.activeSelf;
+        
+        if (unitOnTile && (!unitCursorOnTile || !unitCursorIsActive)) { // if unit on tile and the unit cursor is either not on this tile or not currently selected 
+            cursor.SetActive(false);
+            unitCursor.SetActive(true);
+            unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
+            InteractorManager.Instance.UpdateInteractorWithUnit(unit); // Update the GUI with the selected unit
+        } else { // should select tile instead of the unit on it
+            cursor.SetActive(true);
+            unitCursor.SetActive(false);
+            cursor.transform.position = newPositionOfCursor; // Move the cursor to the selected tile
+            InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y, gridPos.x]); // Update the GUI with the selected tile
         }
     }
 
     public List<AbstractTile> GetNeighbors(AbstractTile tile) {
         var neighbors = new List<AbstractTile>();
 
-        if (tile.Position.x != 0) {
-            // left
+        if (tile.Position.x != 0) { // got a left neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x - 1, tile.Position.y)));
         }
 
-        if (tile.Position.x != forest.size.x - 1) {
-            // right
+        if (tile.Position.x != forest.size.x - 1) { // got a right neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x + 1, tile.Position.y)));
         }
 
-        if (tile.Position.y != 0) {
-            // bottom
+        if (tile.Position.y != 0) { // got a bottom neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y - 1)));
         }
 
-        if (tile.Position.y != forest.size.y - 1) {
-            // top
+        if (tile.Position.y != forest.size.y - 1) { // got a top neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y + 1)));
         }
 
