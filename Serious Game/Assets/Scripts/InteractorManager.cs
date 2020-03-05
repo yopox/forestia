@@ -86,9 +86,9 @@ public class InteractorManager : MonoBehaviour {
     }
 
     private void UpdateActionsWithTile(AbstractTile tile) {
+        var buttonId = 1;
         foreach (var action in tile.Actions) {
             // Iterating through the 4 actions
-            var buttonId = 1;
             switch (buttonId) {
                 case 1: 
                     _action1Object.SetActive(true);
@@ -156,9 +156,9 @@ public class InteractorManager : MonoBehaviour {
     }
     
     private void UpdateActionsWithUnit(Unit unit) {
+        var buttonId = 1;
         foreach (var action in unit.Actions) {
             // Iterating through the 4 actions
-            var buttonId = 1;
             switch (buttonId) {
                 case 1: 
                     _action1Object.SetActive(true);
