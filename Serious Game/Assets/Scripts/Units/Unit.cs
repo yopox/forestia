@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Actions;
 using Tiles;
 using UnityEngine;
 using Action = Actions.Action;
@@ -22,6 +23,7 @@ namespace Units {
             Position = position;
             CanMove = true;
             Actions = new List<Action>();
+            AddAction(new MoveAction(this));
             Name = name;
             Description = description;
             ActionPoints = actionPoints;
