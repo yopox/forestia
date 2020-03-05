@@ -5,14 +5,14 @@ namespace Actions {
     public class MoveAction : Action {
         public int Price { get; }
 
-        public MoveAction(Unit unit) : base("Move", MoveMethod(), IsMoveActionActive(unit)) {
+        public MoveAction() : base("Move", MoveMethod(), IsMoveActionActive()) {
         }
 
         public static System.Action MoveMethod() {
             return () => GameManager.Instance.MoveAction();
         }
 
-        public static Func<bool> IsMoveActionActive(Unit unit) {
+        public static Func<bool> IsMoveActionActive() {
             return () => true;
         }
     }
