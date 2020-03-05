@@ -107,18 +107,16 @@ public class ForestManager : MonoBehaviour {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
                 var tile = _tiles[y, x];
-                Debug.Log(tile.GetType().FullName);
                 switch (tile.GetType().FullName) {
                     case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
-                        if (fT.InFire && displayed != FIRE_TILE) {
-                            Debug.Log("coucou");
+                        if (fT.InFire && displayed != FIRE_TILE)
                             forest.SetTile(position, fireTile);
-                        }
                         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE)
                             forest.SetTile(position, fieldTile);
                         else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE)
                             forest.SetTile(position, forestTile);
+
                         break;
                     case "Tiles.RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
@@ -176,7 +174,8 @@ public class ForestManager : MonoBehaviour {
                 unitCursor.SetActive(true);
                 unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
                 InteractorManager.Instance.UpdateInteractorWithUnit(unit); // Update the GUI with the selected unit
-            } else {
+            }
+            else {
                 // should select tile instead of the unit on it
                 cursor.SetActive(true);
                 unitCursor.SetActive(false);
@@ -187,7 +186,6 @@ public class ForestManager : MonoBehaviour {
         }
         // Move Mode
         else if (GameManager.Instance.state == ClickState.MoveUnit) {
-            
         }
     }
 

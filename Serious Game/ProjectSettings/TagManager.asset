@@ -50,3 +50,6 @@ TagManager:
   - name: DailyDigest
     uniqueID: 1407900505
     locked: 0
+  - name: Menu
+    uniqueID: 1542430017
+    locked: 0
