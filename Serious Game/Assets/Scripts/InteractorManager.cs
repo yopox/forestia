@@ -205,12 +205,16 @@ public class InteractorManager : MonoBehaviour {
         try {
             _action1Object.SetActive(false);
             action1Text.text = "";
+            action1.onClick.RemoveAllListeners();
             _action2Object.SetActive(false);
             action2Text.text = "";
+            action2.onClick.RemoveAllListeners();
             _action3Object.SetActive(false);
             action3Text.text = "";
+            action3.onClick.RemoveAllListeners();
             _action4Object.SetActive(false);
             action4Text.text = "";
+            action4.onClick.RemoveAllListeners();
         }
         catch (Exception e) {
             Console.WriteLine(e);
