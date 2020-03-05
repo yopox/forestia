@@ -14,6 +14,10 @@ namespace Tiles {
         public void SetFire() {
             _onFire = true;
         }
+        
+        public void SetNoFire() {
+            _onFire = false;
+        }
 
         public new int GetBiodiversityScore() {
             if (_onFire) {
