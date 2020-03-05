@@ -1,8 +1,11 @@
+using Tiles;
 using UnityEngine;
 
 namespace Units {
     public class Firefighter : Unit {
         public Firefighter(Vector2Int position) : base(position) {
+            AddAction(new UnitAction("estinguish fire", EstinguishFire, IsEstinguishActive));
+
         }
 
         public override string Name => "Firefighter";
@@ -11,5 +14,17 @@ namespace Units {
         public override bool Friendly => true;
         public override bool CPU => false;
         public override GameObject Prefab => UnitManager.Instance.firefighter;
+        
+        public void EstinguishFire() {
+            // TODO
+        }
+
+        public bool IsEstinguishActive() {
+            var tile = ForestManager.Instance.GetTile(Position);
+            if (tile is ForestTile) {
+                return ((ForestTile) tile).InFire;
+            }
+            return false;
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MainMenu {
+namespace Menus {
     public class OptionsMenuScripts : MonoBehaviour{
         private static readonly int IsOptions = Animator.StringToHash("isOptions");
         

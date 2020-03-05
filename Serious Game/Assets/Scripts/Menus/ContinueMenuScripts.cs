@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MainMenu {
+namespace Menus {
     public class ContinueMenuScripts : MonoBehaviour {
         private static readonly int IsContinue = Animator.StringToHash("isContinue");
 

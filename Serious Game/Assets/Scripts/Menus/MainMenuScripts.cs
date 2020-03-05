@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MainMenu {
+namespace Menus {
     public class MainMenuScripts : MonoBehaviour {
         private GameState _state;
         private static readonly int IsContinue = Animator.StringToHash("isContinue");
