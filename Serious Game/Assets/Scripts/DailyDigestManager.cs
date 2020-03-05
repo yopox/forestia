@@ -39,15 +39,12 @@ public class DailyDigestManager : MonoBehaviour {
 
     public void UpdateWithEvents(List<Event> dayEvents) {
         FlushEvents();
-        Debug.Log("There are " + dayEvents.Count + " events today");
         if (dayEvents.Count > 0) {
-            Debug.Log("1st Event : " + dayEvents[0]);
             headline1.text = dayEvents[0].Name;
             description1.text = dayEvents[0].Description;
         }
 
         if (dayEvents.Count > 1) {
-            Debug.Log("2nd Event : " + dayEvents[1]);
             headline2.text = dayEvents[1].Name;
             description2.text = dayEvents[1].Description;
         }

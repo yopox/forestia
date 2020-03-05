@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Event = Events.Event;
 
 public enum ClickState {
     Start,
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour {
             return _instance;
         }
     }
-    
+
     public ClickState state { get; set; }
 
     public GameManager() {
@@ -34,35 +36,38 @@ public class GameManager : MonoBehaviour {
     /// Called at the beginning of a turn.
     /// </summary>
     public void NewTurn() {
-        if (state == ClickState.Start || state == ClickState.EnemyTurn) {
+        var dayEvents = new List<Event>();
+        if (state == ClickState.EnemyTurn) {
             state = ClickState.DailyDigest;
             Debug.Log("New turn");
             GameState.Instance.round += 1;
             GameState.Instance.UpdateTexts();
 
             // Random events
-            var dayEvents = EventManager.NewDayEvents();
-
-            // Forest update
-            //ForestManager.Instance.Update();
-        
-            // Restore actionPoints on units
-            UnitManager.Instance.RestoreActionPoints();
-
-            // Points calculation
-
-            // New turn popup
-            DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
-            DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
-
+            dayEvents = EventManager.NewDayEvents();
+            
             // Ally CPU turn
             UnitManager.Instance.AllyCPUTurn();
-            
-            // Updating changes on Tile Map
-            ForestManager.Instance.UpdateTileMap();
-            
-            DailyDigestManager.Instance.dailyDigest.SetActive(true);
+        } else if (state == ClickState.Start) {
+            state = ClickState.DailyDigest;
+            Debug.Log("First turn");
+            GameState.Instance.round = 1;
+            GameState.Instance.UpdateTexts();
         }
+
+        // Restore actionPoints on units
+        UnitManager.Instance.RestoreActionPoints();
+
+        // Points calculation
+
+        // New turn popup
+        DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
+        DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
+        
+        // Updating changes on Tile Map
+        ForestManager.Instance.UpdateTileMap();
+
+        DailyDigestManager.Instance.dailyDigest.SetActive(true);
     }
 
     public void EndTurn() {
@@ -78,7 +83,7 @@ public class GameManager : MonoBehaviour {
             NewTurn();
         }
     }
-    
+
     public void MoveAction() {
         if (state == ClickState.Forest) {
             state = ClickState.MoveUnit;
@@ -106,6 +111,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Burger click");
         }
     }
+
     public void Dismiss() {
         if (state == ClickState.DailyDigest) {
             state = ClickState.Forest;
@@ -116,7 +122,7 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         ForestManager.Instance.CreateForest();
         ForestManager.Instance.UpdateTileMap();
-        
+
         NewTurn();
         //ForestManager.Instance.forest.ClearAllTiles();
     }
