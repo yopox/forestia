@@ -101,6 +101,8 @@ public class InteractorManager : MonoBehaviour {
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
                         action1Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
+                    } else if (action.GetType() == typeof(MoveAction)) {
+                        action1Price.text = "";
                     }
                     break;
                 case 2:
@@ -114,6 +116,8 @@ public class InteractorManager : MonoBehaviour {
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
                         action2Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
+                    } else if (action.GetType() == typeof(MoveAction)) {
+                        action2Price.text = "";
                     }
                     break;
                 case 3:
@@ -127,6 +131,8 @@ public class InteractorManager : MonoBehaviour {
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
                         action3Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
+                    } else if (action.GetType() == typeof(MoveAction)) {
+                        action3Price.text = "";
                     }
                     break;
                 case 4:
@@ -140,6 +146,8 @@ public class InteractorManager : MonoBehaviour {
                     if (action.GetType() == typeof(PricedAction)) {
                         var pricedAction = (PricedAction) action;
                         action4Price.text = pricedAction.Price == 0 ? "-" : pricedAction.Price + " $";
+                    } else if (action.GetType() == typeof(MoveAction)) {
+                        action4Price.text = "";
                     }
                     break;
             }
