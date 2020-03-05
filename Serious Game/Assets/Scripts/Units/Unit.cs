@@ -54,5 +54,9 @@ namespace Units {
             action.IsActionActive = () => CurrentActionPoints != 0 && action.IsActionActive();
             Actions.Add(action);
         }
+
+        public void RestoreCurrentActionPoints() {
+            CurrentActionPoints = ActionPoints;
+        }
     }
 }
