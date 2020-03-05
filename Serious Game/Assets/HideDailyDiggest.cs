@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuBehaviour : StateMachineBehaviour {
+public class HideDailyDiggest : StateMachineBehaviour
+{
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        Debug.Log("set inactive");
-        MenuController.Instance.menu.SetActive(false);
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        DailyDigestManager.Instance.dailyDigest.SetActive(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Debug.Log("updates");
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        Debug.Log("set active");
-        MenuController.Instance.menu.SetActive(true);
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        DailyDigestManager.Instance.dailyDigest.SetActive(true);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

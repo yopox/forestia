@@ -4937,7 +4937,7 @@ GameObject:
   - component: {fileID: 1090546287}
   - component: {fileID: 1090546288}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BurgerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

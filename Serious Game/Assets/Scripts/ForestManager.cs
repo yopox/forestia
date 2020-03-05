@@ -149,20 +149,23 @@ public class ForestManager : MonoBehaviour {
             return; // a click should have been fired    
         }
 
+        // ReSharper disable once PossibleNullReferenceException
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int origin = forest.origin;
+        Vector3Int gridPos = forest.WorldToCell(mousePos) - origin;
+        Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + origin) +
+                                      new Vector3((float) 16, (float) 16, 0);
+        
+        if (!forest.HasTile(gridPos + forest.origin)) {
+            return; // click outside of the map
+        }
+
+        var positionClicked = new Vector2Int(gridPos.x, gridPos.y);
+        
         // Forest mode
         if (GameManager.Instance.state == ClickState.Forest) {
-            // ReSharper disable once PossibleNullReferenceException
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int origin = forest.origin;
-            Vector3Int gridPos = forest.WorldToCell(mousePos) - origin;
-            Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + origin) +
-                                          new Vector3((float) 16, (float) 16, 0);
 
-            if (!forest.HasTile(gridPos + forest.origin)) {
-                return; // click outside of the map
-            }
-
-            var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
+            var unit = UnitManager.Instance.GetUnit(positionClicked);
 
             var unitOnTile = unit != null;
             var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
@@ -186,6 +189,16 @@ public class ForestManager : MonoBehaviour {
         }
         // Move Mode
         else if (GameManager.Instance.state == ClickState.MoveUnit) {
+
+            if (UnitManager.Instance.GetUnit(positionClicked) != null) {
+                return; // cannot move there if a unit is already present
+            }
+
+            var unitToMovePosition = forest.WorldToCell(unitCursor.transform.position) - origin;
+            var unitToMove = UnitManager.Instance.GetUnit(new Vector2Int(unitToMovePosition.x, unitToMovePosition.y));
+            
+            // try to move
+            unitToMove.MoveTo(_tiles[gridPos.y, gridPos.x]);
         }
     }
 

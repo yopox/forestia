@@ -23,11 +23,11 @@ public class MenuController : MonoBehaviour {
     }
 
     public void OpenMenu() {
-        menu.SetActive(true);
         menu.GetComponent<Animator>().SetBool(Open, true);
+        menu.SetActive(true);
     }
 
     public void CloseMenu() {
-        
+        menu.GetComponent<Animator>().SetBool(Open, false);
     }
 }

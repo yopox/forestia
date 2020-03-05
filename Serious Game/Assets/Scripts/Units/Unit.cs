@@ -55,7 +55,8 @@ namespace Units {
                 CurrentActionPoints = 0;
                 action.Method();
             };
-            action.IsActionActive = () => CurrentActionPoints != 0 && action.IsActionActive();
+            var isActive = action.IsActionActive();
+            action.IsActionActive = () => CurrentActionPoints != 0 && isActive;
             Actions.Add(action);
         }
 

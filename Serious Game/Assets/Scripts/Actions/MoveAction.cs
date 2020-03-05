@@ -13,7 +13,7 @@ namespace Actions {
         }
 
         public static Func<bool> IsMoveActionActive(Unit unit) {
-            return () => unit.CurrentActionPoints > 0;
+            return () => true;
         }
     }
 }
