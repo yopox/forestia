@@ -3813,6 +3813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dailyDigest: {fileID: 1051866206}
+  headline1: {fileID: 1828122747}
+  description1: {fileID: 1000478658}
+  headline2: {fileID: 1463897303}
+  description2: {fileID: 1941736130}
 --- !u!4 &807548398
 Transform:
   m_ObjectHideFlags: 0

@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Event = Events.Event;
 
 public class DailyDigestManager : MonoBehaviour {
         public GameObject dailyDigest;
+        public Text headline1;
+        public Text description1;
+        public Text headline2;
+        public Text description2;
+        
         private static DailyDigestManager _instance;
         
         
@@ -23,8 +29,25 @@ public class DailyDigestManager : MonoBehaviour {
         }
 
         public void UpdateWithEvents(List<Event> dayEvents) {
-                foreach (var dayEvent in dayEvents) {
-                        
+                FlushEvents();
+                dailyDigest.SetActive(true);
+                Debug.Log("There are " + dayEvents.Count + " events today");
+                if (dayEvents.Count > 0) {
+                        Debug.Log("1st Event : " + dayEvents[0]);
+                        headline1.text = dayEvents[0].Name;
+                        description1.text = dayEvents[0].Description;
                 }
+                if (dayEvents.Count > 1) {
+                        Debug.Log("2nd Event : " + dayEvents[1]);
+                        headline2.text = dayEvents[1].Name;
+                        description2.text = dayEvents[1].Description;
+                }
+        }
+
+        private void FlushEvents() {
+                headline1.text = "";
+                description1.text = "";
+                headline2.text = "";
+                description2.text = "";
         }
 }
