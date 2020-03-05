@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuController : MonoBehaviour {
-    private static MenuController _instance;
-    public static MenuController Instance {
+public class MenuManager : MonoBehaviour {
+    private static MenuManager _instance;
+    public static MenuManager Instance {
         get {
-            if (_instance == null) _instance = FindObjectOfType<MenuController>();
+            if (_instance == null) _instance = FindObjectOfType<MenuManager>();
             return _instance;
         }
     }

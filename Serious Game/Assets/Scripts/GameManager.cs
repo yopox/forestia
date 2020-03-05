@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour {
         if (state == ClickState.Forest || state == ClickState.MoveUnit) {
             Debug.Log("Burger click");
             state = ClickState.InGameMenu;
-            MenuController.Instance.OpenMenu();
+            MenuManager.Instance.OpenMenu();
         }
     }
 
