@@ -1,11 +1,11 @@
+using Actions;
 using Tiles;
 using UnityEngine;
 
 namespace Units {
     public class Firefighter : Unit {
         public Firefighter(Vector2Int position) : base(position) {
-            AddAction(new UnitAction("estinguish fire", EstinguishFire, IsEstinguishActive));
-
+            AddAction(new PricedAction("estinguish fire", EstinguishFire, IsEstinguishActive,0));
         }
 
         public override string Name => "Firefighter";
