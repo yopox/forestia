@@ -1,3 +1,4 @@
+using Actions;
 using Units;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Tiles {
         private const string FireStationTileName = "Fire Station";
 
         public FireStationTile(Vector2Int position) : base(position, FireStationTileName) {
-            AddAction(new TileAction("new firefighter", NewFirefighter, IsNewFirefighterActive,10));
+            AddAction(new PricedAction("new firefighter", NewFirefighter, IsNewFirefighterActive,10));
         }
 
         public void NewFirefighter() {

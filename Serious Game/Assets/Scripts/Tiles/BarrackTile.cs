@@ -1,12 +1,14 @@
+using Actions;
 using Units;
 using UnityEngine;
 
 namespace Tiles {
     public class BarrackTile : BuildingTile {
         private const string BarrackTileName = "Barrack";
+        private const int MilitaryCost = 10;
 
         public BarrackTile(Vector2Int position) : base(position, BarrackTileName) {
-            AddAction(new TileAction("new military", NewMilitary, IsNewMilitaryActive,20));
+            AddAction(new PricedAction("new military", NewMilitary, IsNewMilitaryActive,20));
         }
 
         public void NewMilitary() {
