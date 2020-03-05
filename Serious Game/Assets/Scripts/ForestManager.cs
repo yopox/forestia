@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Tiles;
+using Units;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -105,32 +106,36 @@ public class ForestManager : MonoBehaviour {
             for (var x = 0; x < forest.size.x; x++) {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
-                var tile = GetTile(new Vector2Int(x, y));
+                var tile = _tiles[y, x];
+                Debug.Log(tile.GetType().FullName);
                 switch (tile.GetType().FullName) {
-                    case "ForestTile":
+                    case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
-                        if (fT.InFire && displayed != FIRE_TILE) forest.SetTile(position, fireTile);
+                        if (fT.InFire && displayed != FIRE_TILE) {
+                            Debug.Log("coucou");
+                            forest.SetTile(position, fireTile);
+                        }
                         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE)
                             forest.SetTile(position, fieldTile);
                         else if (!fT.InFire && fT.Level == 1 && displayed != FOREST_TILE)
                             forest.SetTile(position, forestTile);
                         break;
-                    case "RiverTile":
+                    case "Tiles.RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
                         break;
-                    case "BarrackTile":
+                    case "Tiles.BarrackTile":
                         if (displayed != BARRACK_TILE) forest.SetTile(position, barrackTile);
                         break;
-                    case "FarmTile":
+                    case "Tiles.FarmTile":
                         if (displayed != FARM_TILE) forest.SetTile(position, farmTile);
                         break;
-                    case "FarmFieldTile":
+                    case "Tiles.FarmFieldTile":
                         if (displayed != FARM_FIELD_TILE) forest.SetTile(position, farmFieldTile);
                         break;
-                    case "FireStationTile":
+                    case "Tiles.FireStationTile":
                         if (displayed != FIRE_STATION_TILE) forest.SetTile(position, fireStationTile);
                         break;
-                    case "LaboratoryTile":
+                    case "Tiles.LaboratoryTile":
                         if (displayed != LAB_TILE) forest.SetTile(position, labTile);
                         break;
                 }
@@ -142,55 +147,70 @@ public class ForestManager : MonoBehaviour {
     }
 
     public void Update() {
-        if (GameManager.Instance.state != ClickState.Forest || !Input.GetMouseButtonDown(0)) {
-            return; // should be in forest state and a click should have been fired    
+        if (!Input.GetMouseButtonDown(0)) {
+            return; // a click should have been fired    
         }
 
-        // ReSharper disable once PossibleNullReferenceException
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
-        Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + forest.origin) +
-                                      new Vector3((float) 16, (float) 16, 0);
+        // Forest mode
+        if (GameManager.Instance.state == ClickState.Forest) {
+            // ReSharper disable once PossibleNullReferenceException
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int origin = forest.origin;
+            Vector3Int gridPos = forest.WorldToCell(mousePos) - origin;
+            Vector3 newPositionOfCursor = forest.CellToWorld(gridPos + origin) +
+                                          new Vector3((float) 16, (float) 16, 0);
 
-        if (!forest.HasTile(gridPos + forest.origin)) {
-            return; // click outside of the map
+            if (!forest.HasTile(gridPos + forest.origin)) {
+                return; // click outside of the map
+            }
+
+            var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
+
+            var unitOnTile = unit != null;
+            var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
+            var unitCursorIsActive = unitCursor.activeSelf;
+
+            if (unitOnTile && (!unitCursorOnTile || !unitCursorIsActive)) {
+                // if unit on tile and the unit cursor is either not on this tile or not currently selected 
+                cursor.SetActive(false);
+                unitCursor.SetActive(true);
+                unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
+                InteractorManager.Instance.UpdateInteractorWithUnit(unit); // Update the GUI with the selected unit
+            } else {
+                // should select tile instead of the unit on it
+                cursor.SetActive(true);
+                unitCursor.SetActive(false);
+                cursor.transform.position = newPositionOfCursor; // Move the cursor to the selected tile
+                InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y,
+                    gridPos.x]); // Update the GUI with the selected tile
+            }
         }
-
-        var unit = UnitManager.Instance.GetUnit(new Vector2Int(gridPos.x, gridPos.y));
-
-        var unitOnTile = unit != null;
-        var unitCursorOnTile = unitCursor.transform.position == newPositionOfCursor;
-        var unitCursorIsActive = unitCursor.activeSelf;
-        
-        if (unitOnTile && (!unitCursorOnTile || !unitCursorIsActive)) { // if unit on tile and the unit cursor is either not on this tile or not currently selected 
-            cursor.SetActive(false);
-            unitCursor.SetActive(true);
-            unitCursor.transform.position = newPositionOfCursor; // Move the cursor to the selected unit
-            InteractorManager.Instance.UpdateInteractorWithUnit(unit); // Update the GUI with the selected unit
-        } else { // should select tile instead of the unit on it
-            cursor.SetActive(true);
-            unitCursor.SetActive(false);
-            cursor.transform.position = newPositionOfCursor; // Move the cursor to the selected tile
-            InteractorManager.Instance.UpdateInteractorWithTile(_tiles[gridPos.y, gridPos.x]); // Update the GUI with the selected tile
+        // Move Mode
+        else if (GameManager.Instance.state == ClickState.MoveUnit) {
+            
         }
     }
 
     public List<AbstractTile> GetNeighbors(AbstractTile tile) {
         var neighbors = new List<AbstractTile>();
 
-        if (tile.Position.x != 0) { // got a left neighbor
+        if (tile.Position.x != 0) {
+            // got a left neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x - 1, tile.Position.y)));
         }
 
-        if (tile.Position.x != forest.size.x - 1) { // got a right neighbor
+        if (tile.Position.x != forest.size.x - 1) {
+            // got a right neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x + 1, tile.Position.y)));
         }
 
-        if (tile.Position.y != 0) { // got a bottom neighbor
+        if (tile.Position.y != 0) {
+            // got a bottom neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y - 1)));
         }
 
-        if (tile.Position.y != forest.size.y - 1) { // got a top neighbor
+        if (tile.Position.y != forest.size.y - 1) {
+            // got a top neighbor
             neighbors.Add(GetTile(new Vector2Int(tile.Position.x, tile.Position.y + 1)));
         }
 

@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour {
             // Ally CPU turn
             UnitManager.Instance.AllyCPUTurn();
             
+            // Updating changes on Tile Map
+            ForestManager.Instance.UpdateTileMap();
+            
             DailyDigestManager.Instance.dailyDigest.SetActive(true);
         }
     }
