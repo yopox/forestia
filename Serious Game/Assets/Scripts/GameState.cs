@@ -36,7 +36,7 @@ public class GameState : MonoBehaviour {
     public int round;
 
     public void UpdateTexts() {
-        textRound.text = "Round " + round;
+        textRound.text = "ROUND " + round;
         textMoney.text = "$$$\n" + money.Value;
         textFame.text = "FAME\n" + fame.Value + "%";
         textBiodiversity.text = "BIO.\n" + biodiversity.Value;
