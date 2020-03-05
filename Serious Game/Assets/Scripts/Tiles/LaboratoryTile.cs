@@ -1,3 +1,4 @@
+using Actions;
 using Units;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Tiles {
         private const string LaboratoryTileName = "Laboratory";
 
         public LaboratoryTile(Vector2Int position) : base(position, LaboratoryTileName) {
-            AddAction(new TileAction("new scientist", NewResearcher, IsNewResearcherActive,20));
+            AddAction(new PricedAction("new scientist", NewResearcher, IsNewResearcherActive,20));
         }
 
         public void NewResearcher() {

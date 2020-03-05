@@ -1,4 +1,5 @@
 using System;
+using Actions;
 using Tiles;
 using Units;
 using UnityEngine;
@@ -97,7 +98,10 @@ public class InteractorManager : MonoBehaviour {
                         action1.interactable = action.IsActionActive();
                     });
                     action1Text.text = action.Label;
-                    action1Price.text = action.Price + " $";
+                    if (action.GetType() == typeof(PricedAction)) {
+                        var pricedAction = (PricedAction) action;
+                        action1Price.text = pricedAction.Price + " $";
+                    }
                     break;
                 case 2:
                     _action2Object.SetActive(true);
@@ -107,7 +111,10 @@ public class InteractorManager : MonoBehaviour {
                         action2.interactable = action.IsActionActive();
                     });
                     action2Text.text = action.Label;
-                    action2Price.text = action.Price + " $";
+                    if (action.GetType() == typeof(PricedAction)) {
+                        var pricedAction = (PricedAction) action;
+                        action2Price.text = pricedAction.Price + " $";
+                    }
                     break;
                 case 3:
                     _action3Object.SetActive(true);
@@ -117,7 +124,10 @@ public class InteractorManager : MonoBehaviour {
                         action3.interactable = action.IsActionActive();
                     });
                     action3Text.text = action.Label;
-                    action3Price.text = action.Price + " $";
+                    if (action.GetType() == typeof(PricedAction)) {
+                        var pricedAction = (PricedAction) action;
+                        action3Price.text = pricedAction.Price + " $";
+                    }
                     break;
                 case 4:
                     _action4Object.SetActive(true);
@@ -127,7 +137,10 @@ public class InteractorManager : MonoBehaviour {
                         action4.interactable = action.IsActionActive();
                     });
                     action4Text.text = action.Label;
-                    action4Price.text = action.Price + " $";
+                    if (action.GetType() == typeof(PricedAction)) {
+                        var pricedAction = (PricedAction) action;
+                        action4Price.text = pricedAction.Price + " $";
+                    }
                     break;
             }
             buttonId += 1;

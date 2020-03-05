@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Actions;
 using UnityEngine;
 
 namespace Units {
@@ -9,7 +10,7 @@ namespace Units {
         protected Unit(Vector2Int position) {
             Position = position;
             CanMove = true;
-            Actions = new List<UnitAction>();
+            Actions = new List<Action>();
             
         }
 
@@ -21,7 +22,7 @@ namespace Units {
         public abstract bool CPU { get; }
         
         public abstract GameObject Prefab { get; }
-        public IEnumerable<UnitAction> Actions { get; private set; }
+        public List<Action> Actions { get; private set; }
 
         /* Gameplay attributes */
         public Vector2Int Position { get; }
@@ -38,8 +39,8 @@ namespace Units {
             // TODO: Show actions
         }
         
-        protected void AddAction(UnitAction unitAction) {
-            Actions = Actions.Append<UnitAction>(unitAction);
+        protected void AddAction(Action action) {
+            Actions.Add(action);
         }
 
     }

@@ -1,10 +1,11 @@
+using Actions;
 using Tiles;
 using UnityEngine;
 
 namespace Units {
     public class Researcher : Unit {
         public Researcher(Vector2Int position) : base(position) {
-            AddAction(new UnitAction("search", Search, IsSearchActive));
+            AddAction(new PricedAction("search", Search, IsSearchActive, 0));
         }
 
         public override string Name => "Researcher";
