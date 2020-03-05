@@ -107,12 +107,10 @@ public class ForestManager : MonoBehaviour {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
                 var tile = _tiles[y, x];
-                Debug.Log(tile.GetType().FullName);
                 switch (tile.GetType().FullName) {
                     case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
                         if (fT.InFire && displayed != FIRE_TILE) {
-                            Debug.Log("coucou");
                             forest.SetTile(position, fireTile);
                         }
                         else if (!fT.InFire && fT.Level == 0 && displayed != FIELD_TILE)
