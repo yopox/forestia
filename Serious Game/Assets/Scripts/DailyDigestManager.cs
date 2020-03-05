@@ -30,6 +30,7 @@ public class DailyDigestManager : MonoBehaviour {
     public void CloseDd() {
         dailyDigest.GetComponent<Animator>().SetBool(Open, false);
         dailyDigest.GetComponent<Animator>().SetBool(Close, true);
+        GameManager.Instance.Dismiss();
     }
 
     public void UpdateRound(int round) {
@@ -38,7 +39,6 @@ public class DailyDigestManager : MonoBehaviour {
 
     public void UpdateWithEvents(List<Event> dayEvents) {
         FlushEvents();
-        dailyDigest.SetActive(true);
         Debug.Log("There are " + dayEvents.Count + " events today");
         if (dayEvents.Count > 0) {
             Debug.Log("1st Event : " + dayEvents[0]);
