@@ -10,7 +10,8 @@ namespace Units {
         /* General attributes */
         public string Name { get; }
         public string Description { get; }
-        public int ActionPoints { get; set; }
+        public int ActionPoints { get; }
+        public int CurrentActionPoints { get; set; }
         public bool Friendly { get; }
         public bool CPU { get; }
 
@@ -24,6 +25,7 @@ namespace Units {
             ActionPoints = actionPoints;
             Friendly = friendly;
             CPU = cpu;
+            CurrentActionPoints = ActionPoints;
         }
 
         public abstract GameObject Prefab { get; }
@@ -46,10 +48,10 @@ namespace Units {
 
         protected void AddAction(Action action) {
             action.Method = () => {
-                ActionPoints = 0;
+                CurrentActionPoints = 0;
                 action.Method();
             };
-            action.IsActionActive = () => ActionPoints != 0 && action.IsActionActive();
+            action.IsActionActive = () => CurrentActionPoints != 0 && action.IsActionActive();
             Actions.Add(action);
         }
     }
