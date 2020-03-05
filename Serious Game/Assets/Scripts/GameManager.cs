@@ -1,6 +1,8 @@
 using System;
+using StateMachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 /// <summary>
 /// GameManager handles time, events, and the state of the game.
@@ -14,11 +16,12 @@ public class GameManager : MonoBehaviour {
             return _instance;
         }
     }
+    
+    public ClickStateMachine ClickStateMachine;
 
-    private int _biodiversityPoints;
-    private int _popularityPoints;
-    private int _criminalityPoints;
-
+    public GameManager() {
+        this.ClickStateMachine = new ClickStateMachine();
+    }
 
     /// <summary>
     /// Called at the beginning of a turn.
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour {
         var dayEvents = EventManager.NewDayEvents();
 
         // Forest update
-        ForestManager.Instance.Update();
+        //ForestManager.Instance.Update();
         
         // Restore actionPoints on units
         UnitManager.Instance.RestoreActionPoints();
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour {
         // Points calculation
 
         // New turn popup
+        GameManager.Instance.ClickStateMachine.NewTurn();
         DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
         DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
 
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         ForestManager.Instance.CreateForest();
         ForestManager.Instance.UpdateTileMap();
+        
         NewTurn();
         //ForestManager.Instance.forest.ClearAllTiles();
     }

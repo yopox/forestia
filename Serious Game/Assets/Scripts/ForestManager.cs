@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using StateMachine;
 using Tiles;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -142,7 +143,7 @@ public class ForestManager : MonoBehaviour {
     }
 
     public void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (GameManager.Instance.ClickStateMachine.state == ClickState.Forest && Input.GetMouseButtonDown(0)) {
             // ReSharper disable once PossibleNullReferenceException
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = forest.WorldToCell(mousePos) - forest.origin;
