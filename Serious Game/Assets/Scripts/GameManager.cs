@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
 
         // New turn popup
         DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
+        DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
 
         // Ally CPU turn
         UnitManager.Instance.AllyCPUTurn();

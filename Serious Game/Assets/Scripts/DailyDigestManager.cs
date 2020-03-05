@@ -10,6 +10,7 @@ public class DailyDigestManager : MonoBehaviour {
         public Text description1;
         public Text headline2;
         public Text description2;
+        public Text ddExitButtonText;
         
         private static DailyDigestManager _instance;
         
@@ -28,6 +29,9 @@ public class DailyDigestManager : MonoBehaviour {
                 dailyDigest.SetActive(false);
         }
 
+        public void UpdateRound(int round) {
+                ddExitButtonText.text = "Begin Round #" + round;
+        }
         public void UpdateWithEvents(List<Event> dayEvents) {
                 FlushEvents();
                 dailyDigest.SetActive(true);

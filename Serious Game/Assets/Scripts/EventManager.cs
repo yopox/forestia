@@ -46,6 +46,7 @@ public class EventManager : MonoBehaviour {
                             }).ToList();
                             foreach (var tmpNeighbor in forestsNotInFire) {
                                 if (Random.Range(0.0f, 1.0f) < 1) { // TODO
+                                    Debug.Log("Adding Fire Event on neighbor");
                                     var tmpForestNeighbor = (ForestTile) tmpNeighbor;
                                     var newEvent = new FireEvent(tmpForestNeighbor);
                                     events.Add(newEvent);
@@ -57,6 +58,7 @@ public class EventManager : MonoBehaviour {
                             }
                         } else { // random spontaneous fire
                             if (Random.Range(0.0f, 1.0f) < 1) { // TODO
+                                Debug.Log("Adding Fire Event");
                                 var newEvent = new FireEvent(fT);
                                 events.Add(newEvent);
                                 fT.SetFire();
