@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Actions;
+using Tiles;
 using UnityEngine;
+using Action = Actions.Action;
 
 namespace Units {
     public abstract class Unit {
@@ -57,6 +59,18 @@ namespace Units {
 
         public void RestoreCurrentActionPoints() {
             CurrentActionPoints = ActionPoints;
+        }
+
+        public void MoveTo(AbstractTile destination) {
+            var distanceX = Math.Abs(Position.x - destination.Position.x);
+            var distanceY = Math.Abs(Position.y - destination.Position.y);
+            var distance = distanceX + distanceY;
+            if (distance > CurrentActionPoints) { // you do not have enough actionPoints to move
+                return;
+            }
+            // move authorize
+            CurrentActionPoints -= distance; // remove points
+            Position.Set(destination.Position.x, destination.Position.y); // move unit
         }
     }
 }
