@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 using Event = Events.Event;
@@ -27,7 +26,7 @@ public class DailyDigestManager : MonoBehaviour {
     /// This function is called by the exit button on the scene to close de DailyDigest. 
     /// </summary>
     public void CloseDd() {
-        GameManager.Instance.ClickStateMachine.Dismiss();
+        GameManager.Instance.Dismiss();
         dailyDigest.SetActive(false);
     }
 
