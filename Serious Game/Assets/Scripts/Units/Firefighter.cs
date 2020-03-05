@@ -15,6 +15,9 @@ namespace Units {
         }
 
         public bool IsEstinguishActive() {
+            if (!(CurrentActionPoints > 0)) {
+                return false;
+            }
             var tile = ForestManager.Instance.GetTile(Position);
             if (tile is ForestTile) {
                 return ((ForestTile) tile).InFire;

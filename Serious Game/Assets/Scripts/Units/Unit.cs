@@ -23,7 +23,7 @@ namespace Units {
             Position = position;
             CanMove = true;
             Actions = new List<Action>();
-            AddAction(new MoveAction());
+            AddAction(new MoveAction(this));
             Name = name;
             Description = description;
             ActionPoints = actionPoints;
@@ -51,12 +51,6 @@ namespace Units {
         }
 
         protected void AddAction(Action action) {
-            action.Method = () => {
-                CurrentActionPoints = 0;
-                action.Method();
-            };
-            var isActive = action.IsActionActive();
-            action.IsActionActive = () => CurrentActionPoints != 0 && isActive;
             Actions.Add(action);
         }
 
@@ -68,9 +62,11 @@ namespace Units {
             var distanceX = Math.Abs(Position.x - destination.Position.x);
             var distanceY = Math.Abs(Position.y - destination.Position.y);
             var distance = distanceX + distanceY;
-            if (distance > CurrentActionPoints) { // you do not have enough actionPoints to move
+            if (distance > CurrentActionPoints) {
+                // you do not have enough actionPoints to move
                 return;
             }
+
             // move authorize
             CurrentActionPoints -= distance; // remove points
             Position.Set(destination.Position.x, destination.Position.y); // move unit

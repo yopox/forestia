@@ -15,6 +15,9 @@ namespace Units {
         }
 
         public bool IsSearchActive() {
+            if (!(CurrentActionPoints > 0)) {
+                return false;
+            }
             var tile = ForestManager.Instance.GetTile(Position);
             return tile is ForestTile;
         }
