@@ -29,7 +29,7 @@ public class DailyDigestManager : MonoBehaviour {
     /// </summary>
     public void CloseDd() {
         dailyDigest.GetComponent<Animator>().SetBool(Open, false);
-        dailyDigest.GetComponent<Animator>().SetBool(Close, true);
+        dailyDigest.GetComponent<Animator>().SetBool(Close, true); 
         GameManager.Instance.Dismiss();
     }
 
@@ -51,7 +51,7 @@ public class DailyDigestManager : MonoBehaviour {
             headline2.text = dayEvents[1].Name;
             description2.text = dayEvents[1].Description;
         }
-
+        dailyDigest.SetActive(true);
         dailyDigest.GetComponent<Animator>().SetBool(Open, true);
         dailyDigest.GetComponent<Animator>().SetBool(Close, false);
     }
