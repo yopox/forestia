@@ -1,6 +1,9 @@
+using GameVariables;
+
 namespace Events {
     public class FarmersEvent : Event {
-        public FarmersEvent(string Name, string Description) : base("Farmers", "Farmers Event") {
+        public FarmersEvent() : base("Farmers", "Farmers Event") { // TODO
+            AddInfluence(new AbsoluteInfluence(typeof(Biodiversity), -10)); // TODO
         }
     }
 }

@@ -20,6 +20,12 @@ namespace Events {
             Influences.Append(influence);
         }
 
+        public void Perform() {
+            foreach (var newEventInfluence in Influences) {
+                newEventInfluence.Perform(GameState.Instance);
+            }
+        }
+
         /// <summary>
         /// When the event occurs, this function will spread it on some tiles
         /// </summary>
