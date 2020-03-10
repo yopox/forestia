@@ -76,6 +76,8 @@ namespace Units {
                     ForestManager.Instance.forest.origin) +
                 new Vector3((float) 16, (float) 16, 0
                 );
+            
+            InteractorManager.Instance.UpdateInteractorWithUnit(this);
 
             return true;
         }
