@@ -233,4 +233,29 @@ public class ForestManager : MonoBehaviour {
 
         return neighbors;
     }
+
+    public int GetForestBiodiversityPoints() {
+        var points = 0;
+        for (var y = 0; y < forest.size.y; y++) {
+            for (var x = 0; x < forest.size.x; x++) {
+                var tile = _tiles[y, x];
+                if (tile.GetType().FullName == "Tiles.ForestTile") {
+                    points += ((ForestTile) tile).GetBiodiversityScore();
+                }
+            }
+        }
+
+        return points;
+    }
+    
+    public void UpdateForestBiodiversityPoints() {
+        for (var y = 0; y < forest.size.y; y++) {
+            for (var x = 0; x < forest.size.x; x++) {
+                var tile = _tiles[y, x];
+                if (tile.GetType().FullName == "Tiles.ForestTile") {
+                    ((ForestTile) tile).Level++;
+                }
+            }
+        }
+    }
 }

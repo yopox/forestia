@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameVariables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Event = Events.Event;
@@ -59,8 +60,12 @@ public class GameManager : MonoBehaviour {
         // Restore actionPoints on units
         UnitManager.Instance.RestoreActionPoints();
 
+        // Update Forest Biodiversity
+        ForestManager.Instance.UpdateForestBiodiversityPoints();
+        
         // Points calculation
-
+        GameState.Instance.biodiversity.Value += ForestManager.Instance.GetForestBiodiversityPoints() / 500; // TODO
+        
         // New turn popup
         DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
         
