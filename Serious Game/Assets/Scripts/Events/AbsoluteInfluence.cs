@@ -1,5 +1,6 @@
 using System;
 using GameVariables;
+using UnityEngine;
 
 namespace Events {
     public class AbsoluteInfluence : Influence {

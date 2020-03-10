@@ -5,7 +5,7 @@ namespace Events {
     public class FireEvent : Event {
         public FireEvent(ForestTile forestTile) : base("It's getting hot", BuildDescription(forestTile)) {
             AddInfluence(new AbsoluteInfluence(typeof(Fame), -5));
-            AddInfluence(new AbsoluteInfluence(typeof(Biodiversity), -500 * forestTile.GetBiodiversityScore())); // TODO
+            AddInfluence(new AbsoluteInfluence(typeof(Biodiversity), -forestTile.GetBiodiversityScore())); // TODO
         }
 
         private static string BuildDescription(AbstractTile tile) {

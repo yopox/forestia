@@ -8,16 +8,16 @@ namespace Events {
     public abstract class Event {
         public string Name { get; }
         public string Description { get; }
-        public Influence[] Influences { get; }
+        public List<Influence> Influences { get; }
 
         protected Event(string name, string description) {
-            this.Name = name;
-            this.Description = description;
-            Influences = new Influence[] { };
+            Name = name;
+            Description = description;
+            Influences = new List<Influence>();
         }
 
         protected void AddInfluence(Influence influence) {
-            Influences.Append(influence);
+            Influences.Add(influence);
         }
 
         public void Perform() {
