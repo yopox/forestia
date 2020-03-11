@@ -11,6 +11,7 @@ public static class Util {
     public static double FirePropagationProba = 0.069;
     public static double SpontaneousFireProba = 0.0007;
     public static double GlobalEventProba = 0.15;
+    public static double FarmersFireProbability = 0.1;
     
     // BIODIVERSITY
     public static int BiodiversityScale = 250;
