@@ -16,6 +16,7 @@ namespace Units {
             ((ForestTile) tile).Level = 1;
             CurrentActionPoints = 0;
             ForestManager.Instance.UpdateTileMap();
+            InteractorManager.Instance.UpdateInteractorWithUnit(this);
         }
 
         public bool IsExtinguishActive() {
