@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
             // Ally CPU turn
             UnitManager.Instance.AllyCPUTurn();
             DailyDigestManager.Instance.UpdateWithEvents(dayEvents);
+            ForestManager.Instance.UpdateForestBiodiversityPoints();
+
         } else if (state == ClickState.Start) {
             state = ClickState.DailyDigest;
             Debug.Log("First turn");
@@ -61,7 +63,6 @@ public class GameManager : MonoBehaviour {
         UnitManager.Instance.RestoreActionPoints();
 
         // Update Forest Biodiversity
-        ForestManager.Instance.UpdateForestBiodiversityPoints();
         
         // Points calculation
         GameState.Instance.biodiversity.Value += ForestManager.Instance.GetForestBiodiversityPoints() / 250; // TODO

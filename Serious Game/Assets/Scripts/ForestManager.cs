@@ -13,8 +13,10 @@ using UnityEngine.Tilemaps;
 public class ForestManager : MonoBehaviour {
     private static ForestManager _instance;
     public Tilemap forest;
-    public TileBase forestTile;
-    public TileBase fieldTile;
+    public TileBase forest1Tile;
+    public TileBase forest2Tile;
+    public TileBase forest3Tile;
+    public TileBase forest4Tile;
     public TileBase fireTile;
     public TileBase riverTile;
     public TileBase barrackTile;
@@ -26,8 +28,10 @@ public class ForestManager : MonoBehaviour {
     public GameObject unitCursor;
 
 
-    private const string FOREST_TILE = "tile_forest";
-    private const string FIELD_TILE = "tile_field";
+    private const string FOREST1_TILE = "tile_forest1";
+    private const string FOREST2_TILE = "tile_forest2";
+    private const string FOREST3_TILE = "tile_forest3";
+    private const string FOREST4_TILE = "tile_forest4";
     private const string FIRE_TILE = "tile_fire";
     private const string RIVER_TILE = "tile_river";
     private const string BARRACK_TILE = "tile_barrack";
@@ -66,13 +70,21 @@ public class ForestManager : MonoBehaviour {
         for (var y = 0; y < size.y; y++) {
             for (var x = 0; x < size.x; x++) {
                 switch (forest.GetTile(forest.origin + new Vector3Int(x, y, 0)).name) {
-                    case FOREST_TILE:
+                    case FOREST1_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
                         _tiles[y, x].Level = 1;
                         break;
-                    case FIELD_TILE:
+                    case FOREST2_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
-                        _tiles[y, x].Level = 0;
+                        _tiles[y, x].Level = 3;
+                        break;
+                    case FOREST3_TILE:
+                        _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
+                        _tiles[y, x].Level = 6;
+                        break;
+                    case FOREST4_TILE:
+                        _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
+                        _tiles[y, x].Level = 9;
                         break;
                     case FIRE_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
@@ -107,16 +119,21 @@ public class ForestManager : MonoBehaviour {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
                 var tile = _tiles[y, x];
+                Debug.Log(tile);
+                Debug.Log(y.ToString() + x.ToString());
                 switch (tile.GetType().FullName) {
                     case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
                         if (fT.OnFire && displayed != FIRE_TILE)
                             forest.SetTile(position, fireTile);
-                        else if (!fT.OnFire && fT.Level == 0 && displayed != FIELD_TILE)
-                            forest.SetTile(position, fieldTile);
-                        else if (!fT.OnFire && fT.Level == 1 && displayed != FOREST_TILE)
-                            forest.SetTile(position, forestTile);
-
+                        else if (!fT.OnFire && fT.Level <= 2 && displayed != FOREST1_TILE)
+                            forest.SetTile(position, forest1Tile);
+                        else if (!fT.OnFire && fT.Level >= 3 && fT.Level <= 5 && displayed != FOREST2_TILE)
+                            forest.SetTile(position, forest2Tile);
+                        else if (!fT.OnFire && fT.Level >= 6 && fT.Level <= 8 && displayed != FOREST3_TILE)
+                            forest.SetTile(position, forest3Tile);
+                        else if (!fT.OnFire && fT.Level >= 9  && displayed != FOREST4_TILE)
+                            forest.SetTile(position, forest4Tile);
                         break;
                     case "Tiles.RiverTile":
                         if (displayed != RIVER_TILE) forest.SetTile(position, riverTile);
