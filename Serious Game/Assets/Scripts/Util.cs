@@ -8,8 +8,8 @@ public static class Util {
     
     // EVENT MODIFIERS
     public static int FireFameDrop = 5;
-    public static double FirePropagationProba = 0.02;
-    public static double SpontaneousFireProba = 0.001;
+    public static double FirePropagationProba = 0.069;
+    public static double SpontaneousFireProba = 0.0007;
     public static double GlobalEventProba = 0.15;
     
     // BIODIVERSITY

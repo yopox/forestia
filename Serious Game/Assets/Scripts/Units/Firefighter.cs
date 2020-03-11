@@ -13,6 +13,7 @@ namespace Units {
         public void ExtinguishFire() {
             var tile = ForestManager.Instance.GetTile(Position);
             ((ForestTile) tile).SetNoFire();
+            ((ForestTile) tile).Level = 1;
             CurrentActionPoints = 0;
             ForestManager.Instance.UpdateTileMap();
         }

@@ -6,7 +6,7 @@ namespace Units {
     public class Researcher : Unit {
         public Researcher(Vector2Int position) : base(position, "Researcher", "Can discover new species.", 3, true,
             false) {
-            AddAction(new DefaultUnitAction("search", Search, IsSearchActive));
+            AddAction(new DefaultUnitAction("Search", Search, IsSearchActive));
         }
 
         public override GameObject Prefab => UnitManager.Instance.researcher;
