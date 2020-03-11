@@ -40,12 +40,12 @@ public class EventManager : MonoBehaviour {
                 if (fT.OnFire) {
                     // Fire propagation
                     var neighbors = ForestManager.Instance.GetNeighbors(fT);
-                    var forestsNotInFire = neighbors.Where(t => {
+                    var forestsNotOnFire = neighbors.Where(t => {
                         if (t.GetType() != typeof(ForestTile)) return false;
                         return !((ForestTile) t).OnFire;
                     }).ToList();
 
-                    foreach (var tmpNeighbor in forestsNotInFire) {
+                    foreach (var tmpNeighbor in forestsNotOnFire) {
                         if (Random.Range(0f, 1f) < Util.FirePropagationProba) {
                             var tmpForestNeighbor = (ForestTile) tmpNeighbor;
                             if (!tilesOnFire.Contains(tmpForestNeighbor)) tilesOnFire.Add(tmpForestNeighbor);

@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
         // Update Forest Biodiversity
         
         // Points calculation
-        GameState.Instance.biodiversity.Value += ForestManager.Instance.GetForestBiodiversityPoints() / 250; // TODO
+        GameState.Instance.biodiversity.Value += ForestManager.Instance.GetForestBiodiversityPoints() / Util.BiodiversityScale;
         
         // New turn popup
         DailyDigestManager.Instance.UpdateRound(GameState.Instance.round);
