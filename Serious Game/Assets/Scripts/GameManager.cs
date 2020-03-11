@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Move action");
         } else if (state == ClickState.MoveUnit) {
             state = ClickState.Forest;
+            InteractorManager.Instance.action1Text.text = "Move";
+
         }
     }
 
