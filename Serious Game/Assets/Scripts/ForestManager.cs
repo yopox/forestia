@@ -268,7 +268,7 @@ public class ForestManager : MonoBehaviour {
         for (var y = 0; y < forest.size.y; y++) {
             for (var x = 0; x < forest.size.x; x++) {
                 var tile = _tiles[y, x];
-                if (tile.GetType().FullName == "Tiles.ForestTile") {
+                if (tile.GetType().FullName == "Tiles.ForestTile" && ((ForestTile) tile).Level <= 25) {
                     
                     var neighboursOnFire = GetNeighbors(tile).Where(t => {
                         if (t.GetType() != typeof(ForestTile)) return false;
