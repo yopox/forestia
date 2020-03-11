@@ -76,15 +76,15 @@ public class ForestManager : MonoBehaviour {
                         break;
                     case FOREST2_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
-                        _tiles[y, x].Level = 3;
+                        _tiles[y, x].Level = 7;
                         break;
                     case FOREST3_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
-                        _tiles[y, x].Level = 6;
+                        _tiles[y, x].Level = 13;
                         break;
                     case FOREST4_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
-                        _tiles[y, x].Level = 9;
+                        _tiles[y, x].Level = 20;
                         break;
                     case FIRE_TILE:
                         _tiles[y, x] = new ForestTile(new Vector2Int(x, y));
@@ -124,13 +124,13 @@ public class ForestManager : MonoBehaviour {
                         var fT = (ForestTile) tile;
                         if (fT.OnFire && displayed != FIRE_TILE)
                             forest.SetTile(position, fireTile);
-                        else if (!fT.OnFire && fT.Level <= 2 && displayed != FOREST1_TILE)
+                        else if (!fT.OnFire && fT.Level <= 6 && displayed != FOREST1_TILE)
                             forest.SetTile(position, forest1Tile);
-                        else if (!fT.OnFire && fT.Level >= 3 && fT.Level <= 5 && displayed != FOREST2_TILE)
+                        else if (!fT.OnFire && fT.Level >= 7 && fT.Level <= 12 && displayed != FOREST2_TILE)
                             forest.SetTile(position, forest2Tile);
-                        else if (!fT.OnFire && fT.Level >= 6 && fT.Level <= 8 && displayed != FOREST3_TILE)
+                        else if (!fT.OnFire && fT.Level >= 13 && fT.Level <= 19 && displayed != FOREST3_TILE)
                             forest.SetTile(position, forest3Tile);
-                        else if (!fT.OnFire && fT.Level >= 9  && displayed != FOREST4_TILE)
+                        else if (!fT.OnFire && fT.Level >= 20  && displayed != FOREST4_TILE)
                             forest.SetTile(position, forest4Tile);
                         break;
                     case "Tiles.RiverTile":
