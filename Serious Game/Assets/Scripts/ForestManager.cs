@@ -119,8 +119,6 @@ public class ForestManager : MonoBehaviour {
                 var position = forest.origin + new Vector3Int(x, y, 0);
                 var displayed = forest.GetTile(position).name;
                 var tile = _tiles[y, x];
-                Debug.Log(tile);
-                Debug.Log(y.ToString() + x.ToString());
                 switch (tile.GetType().FullName) {
                     case "Tiles.ForestTile":
                         var fT = (ForestTile) tile;
