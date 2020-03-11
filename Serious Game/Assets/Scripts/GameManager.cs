@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("First turn");
             GameState.Instance.round = 1;
             GameState.Instance.UpdateTexts();
+            InteractorManager.Instance.UpdateInteractorWithTile(ForestManager.Instance.GetTile(new Vector2Int(0,1)));
         }
 
         // Restore actionPoints on units

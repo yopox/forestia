@@ -155,9 +155,6 @@ public class ForestManager : MonoBehaviour {
                 }
             }
         }
-
-        // Cursor is set on origin tile, so updating the interactor accordingly
-        InteractorManager.Instance.UpdateInteractorWithTile(_tiles[0, 0]);
     }
 
     public void Update() {
