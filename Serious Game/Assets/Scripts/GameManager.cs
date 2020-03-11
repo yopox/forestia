@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour {
         if (state == ClickState.Forest) {
             state = ClickState.MoveUnit;
             Debug.Log("Move action");
+        } else if (state == ClickState.MoveUnit) {
+            state = ClickState.Forest;
         }
     }
 
