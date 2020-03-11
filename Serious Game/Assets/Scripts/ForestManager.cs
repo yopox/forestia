@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tiles;
 using Units;
 using UnityEngine;
@@ -268,7 +269,16 @@ public class ForestManager : MonoBehaviour {
             for (var x = 0; x < forest.size.x; x++) {
                 var tile = _tiles[y, x];
                 if (tile.GetType().FullName == "Tiles.ForestTile") {
-                    ((ForestTile) tile).Level++;
+                    
+                    var neighboursOnFire = GetNeighbors(tile).Where(t => {
+                        if (t.GetType() != typeof(ForestTile)) return false;
+                        return ((ForestTile) t).OnFire;
+                    }).ToList();
+                    
+                    // A forest can't win biodiversity if a neighbour is in fire
+                    if (neighboursOnFire.Count == 0) {
+                        ((ForestTile) tile).Level++;
+                    }
                 }
             }
         }
